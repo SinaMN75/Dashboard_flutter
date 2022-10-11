@@ -1,0 +1,20 @@
+{
+  "thisFieldIsRequired": "This field is required",
+  "incorrectMobilePhoneNumberFormat": "Incorrect mobile phone number format",
+  "incorrectEmailFormat": "Incorrect email format",
+  "incorrectUsername": "Incorrect username",
+  "incorrectPassword": "Incorrect password",
+  "dashboard": "Dashboard",
+  "users": "Users",
+  "post": "Products",
+  "category": "Category",
+  "inactiveUsers": "Inactive Users",
+  "reports": "Reports",
+  "error": "Error",
+  "id": "Id",
+  "title": "Title",
+  "titleTr1": "TitleTr1",
+  "titleTr2": "TitleTr2",
+  "edit": "Edit",
+  "delete": "Delete"
+}
