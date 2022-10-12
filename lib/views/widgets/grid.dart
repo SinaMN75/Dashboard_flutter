@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:utilities/utilities.dart';
 
-Widget gridHeader(final String title) => Center(child: Text(title, textAlign: TextAlign.center).headline1());
+Widget gridHeader(final String title) => Center(child: Text(title, textAlign: TextAlign.center).headline3());
 
 Widget gridRow(final String title) => Container(
       alignment: Alignment.center,

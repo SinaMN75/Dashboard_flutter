@@ -16,5 +16,12 @@
   "titleTr1": "TitleTr1",
   "titleTr2": "TitleTr2",
   "edit": "Edit",
-  "delete": "Delete"
+  "delete": "Delete",
+  "subtitle": "Subtitle",
+  "color": "Color",
+  "link": "Link",
+  "parent": "Parent",
+  "usecase": "UseCase",
+  "type": "Type",
+  "order": "Order"
 }

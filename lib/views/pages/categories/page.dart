@@ -24,13 +24,22 @@ class _CategoriesPageState extends State<CategoriesPage> with CategoriesControll
   @override
   Widget build(final BuildContext context) => scaffold(
         constraints: const BoxConstraints(minWidth: 1000),
-        appBar: appbar(title: s.users),
+        appBar: appbar(
+          title: s.users,
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.picture_as_pdf),
+              onPressed: exportDataGridToPdf,
+            ),
+          ],
+        ),
         drawer: drawer(),
         body: _dataGrid(),
       );
 
   Widget _dataGrid() => SfDataGrid(
-        columnWidthMode: ColumnWidthMode.fill,
+        key: gridKey,
+        columnWidthMode: ColumnWidthMode.auto,
         allowSorting: true,
         allowFiltering: true,
         allowMultiColumnSorting: true,
@@ -40,19 +49,26 @@ class _CategoriesPageState extends State<CategoriesPage> with CategoriesControll
         startSwipeActionsBuilder: (final _, final DataGridRow row, final __) => gridSwipeButton(
           title: s.edit,
           backgroundColor: Colors.blueAccent,
-          onTap: () => onEditTap(dto: row.getCells().first.value),
+          onTap: () => onEditTap(dto: (row.getCells()[1]).value),
         ),
         endSwipeActionsBuilder: (final _, final DataGridRow row, final __) => gridSwipeButton(
           title: s.delete,
           backgroundColor: Colors.red,
-          onTap: () => onDeleteTap(dto: row.getCells().first.value),
+          onTap: () => onDeleteTap(dto: (row.getCells()[1]).value),
         ),
         source: dataSource,
         columns: <GridColumn>[
+          GridColumn(columnName: s.order, label: gridHeader(s.order)),
           GridColumn(columnName: s.id, label: gridHeader(s.id)),
           GridColumn(columnName: s.title, label: gridHeader(s.title)),
           GridColumn(columnName: s.titleTr1, label: gridHeader(s.titleTr1)),
           GridColumn(columnName: s.titleTr2, label: gridHeader(s.titleTr2)),
+          GridColumn(columnName: s.subtitle, label: gridHeader(s.subtitle)),
+          GridColumn(columnName: s.color, label: gridHeader(s.color)),
+          GridColumn(columnName: s.link, label: gridHeader(s.link)),
+          GridColumn(columnName: s.parent, label: gridHeader(s.parent)),
+          GridColumn(columnName: s.usecase, label: gridHeader(s.usecase)),
+          GridColumn(columnName: s.type, label: gridHeader(s.type)),
         ],
       );
 }

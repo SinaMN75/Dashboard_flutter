@@ -1,5 +1,5 @@
 import 'package:dashboard/core/core.dart';
-import 'package:dashboard/views/pages/categories/page.dart';
+import 'package:dashboard/views/pages/main/main_page.dart';
 import 'package:utilities/utilities.dart';
 
 mixin SplashController {
@@ -9,7 +9,7 @@ mixin SplashController {
     categoryDataSource.read(
       onResponse: (final GenericResponse<CategoryReadDto> onResponse) {
         App.categories = onResponse.resultList ?? <CategoryReadDto>[];
-        offAll(const CategoriesPage());
+        offAll(const MainPage());
       },
       onError: (final GenericResponse<dynamic> onError) => snackbarRed(title: s.error, subtitle: onError.message),
     );

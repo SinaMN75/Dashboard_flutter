@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "category": MessageLookupByLibrary.simpleMessage("Category"),
+        "color": MessageLookupByLibrary.simpleMessage("Color"),
         "dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
@@ -38,13 +39,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Incorrect password"),
         "incorrectUsername":
             MessageLookupByLibrary.simpleMessage("Incorrect username"),
+        "link": MessageLookupByLibrary.simpleMessage("Link"),
+        "order": MessageLookupByLibrary.simpleMessage("Order"),
+        "parent": MessageLookupByLibrary.simpleMessage("Parent"),
         "post": MessageLookupByLibrary.simpleMessage("Products"),
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
+        "subtitle": MessageLookupByLibrary.simpleMessage("Subtitle"),
         "thisFieldIsRequired":
             MessageLookupByLibrary.simpleMessage("This field is required"),
         "title": MessageLookupByLibrary.simpleMessage("Title"),
         "titleTr1": MessageLookupByLibrary.simpleMessage("TitleTr1"),
         "titleTr2": MessageLookupByLibrary.simpleMessage("TitleTr2"),
+        "type": MessageLookupByLibrary.simpleMessage("Type"),
+        "usecase": MessageLookupByLibrary.simpleMessage("UseCase"),
         "users": MessageLookupByLibrary.simpleMessage("Users")
       };
 }

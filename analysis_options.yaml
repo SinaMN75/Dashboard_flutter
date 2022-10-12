@@ -221,7 +221,7 @@ linter:
     annotate_overrides: true
     avoid_annotating_with_dynamic: false
     avoid_bool_literals_in_conditional_expressions: false
-    avoid_catches_without_on_clauses: true
+    avoid_catches_without_on_clauses: false
     avoid_catching_warnings: true
     avoid_classes_with_only_static_members: false
     avoid_double_and_int_checks: true
@@ -259,7 +259,7 @@ linter:
     avoid_unnecessary_containers: true
     avoid_unused_constructor_parameters: true
     avoid_void_async: false
-    avoid_web_libraries_in_flutter: true
+    avoid_web_libraries_in_flutter: false
     await_only_futures: true
     camel_case_extensions: true
     camel_case_types: true

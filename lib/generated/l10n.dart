@@ -229,6 +229,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Subtitle`
+  String get subtitle {
+    return Intl.message(
+      'Subtitle',
+      name: 'subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Color`
+  String get color {
+    return Intl.message(
+      'Color',
+      name: 'color',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Link`
+  String get link {
+    return Intl.message(
+      'Link',
+      name: 'link',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Parent`
+  String get parent {
+    return Intl.message(
+      'Parent',
+      name: 'parent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `UseCase`
+  String get usecase {
+    return Intl.message(
+      'UseCase',
+      name: 'usecase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type`
+  String get type {
+    return Intl.message(
+      'Type',
+      name: 'type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order`
+  String get order {
+    return Intl.message(
+      'Order',
+      name: 'order',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
