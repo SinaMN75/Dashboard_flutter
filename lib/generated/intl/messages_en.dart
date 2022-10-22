@@ -29,6 +29,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "codeSentToNumber":
             MessageLookupByLibrary.simpleMessage("Code sent to number"),
         "color": MessageLookupByLibrary.simpleMessage("Color"),
+        "createCategory":
+            MessageLookupByLibrary.simpleMessage("Create category"),
         "dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
@@ -74,6 +76,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "titleTr1": MessageLookupByLibrary.simpleMessage("TitleTr1"),
         "titleTr2": MessageLookupByLibrary.simpleMessage("TitleTr2"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),
+        "updateCategory":
+            MessageLookupByLibrary.simpleMessage("Update category"),
         "usecase": MessageLookupByLibrary.simpleMessage("UseCase"),
         "users": MessageLookupByLibrary.simpleMessage("Users"),
         "warning": MessageLookupByLibrary.simpleMessage("Warning")

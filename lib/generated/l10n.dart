@@ -350,6 +350,26 @@ class S {
     );
   }
 
+  /// `Create category`
+  String get createCategory {
+    return Intl.message(
+      'Create category',
+      name: 'createCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update category`
+  String get updateCategory {
+    return Intl.message(
+      'Update category',
+      name: 'updateCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Edit`
   String get edit {
     return Intl.message(

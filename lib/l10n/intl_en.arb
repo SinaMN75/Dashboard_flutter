@@ -29,6 +29,8 @@
   "pleaseEnterFourDigitPin": "Please enter four digit pin",
   "titleTr2": "TitleTr2",
   "warning": "Warning",
+  "createCategory": "Create category",
+  "updateCategory": "Update category",
   "edit": "Edit",
   "delete": "Delete",
   "subtitle": "Subtitle",

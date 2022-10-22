@@ -145,6 +145,7 @@ class AppIcons {
   static const String warning = "$_base/warning.svg";
   static const String car = "$_base/car.svg";
   static const String copy = "$_base/copy.svg";
+  static const String expansionArrow = "$_base/expansion_arrow.svg";
   static const String menu = "$_base/menu.svg";
   static const String aboutUs = "$_base/about_us.svg";
   static const String faq = "$_base/faq.svg";

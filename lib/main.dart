@@ -1,5 +1,7 @@
 import 'package:dashboard/core/core.dart';
 import 'package:dashboard/generated/l10n.dart';
+import 'package:dashboard/views/pages/categories/create.dart';
+import 'package:dashboard/views/pages/categories/detail.dart';
 import 'package:dashboard/views/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -48,7 +50,7 @@ class _AppState extends State<App> {
         supportedLocales: const <Locale>[Locale("en"), Locale("fa")],
         locale: const Locale("en"),
         theme: AppThemes.lightTheme,
-        home: const SplashPage(),
+        home: const CategoryCreatePage(),
         builder: EasyLoading.init(),
       );
 }

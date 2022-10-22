@@ -9,6 +9,10 @@ import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:utilities/utilities.dart';
 
 mixin CategoriesController {
+
+  RxString selectedCategoryUseCase=''.obs;
+  List<String> listCategoryUseCase=<String>[];
+  final TextEditingController titleController = TextEditingController();
   final GlobalKey<SfDataGridState> gridKey = GlobalKey<SfDataGridState>();
   late DataSource dataSource;
   List<CategoryReadDto> list = App.categories.where((final CategoryReadDto element) => element.useCase == "category").toList();
@@ -41,7 +45,18 @@ mixin CategoriesController {
     await helper.FileSaveHelper.saveAndLaunchFile(bytes, 'DataGrid.pdf');
     document.dispose();
   }
+  void addListCategoryUseCase(){
+   const List<UseCaseCategory> listUsecaseCategory= UseCaseCategory.values;
+   listUsecaseCategory.forEach((final UseCaseCategory element) {
+      listCategoryUseCase.add(element.title);
+    });
+    selectedCategoryUseCase.value=UseCaseCategory.values.first.title;
+
+    print(selectedCategoryUseCase.value);
+  }
 }
+
+
 
 class DataSource extends DataGridSource {
   DataSource(final List<CategoryReadDto> list) {
