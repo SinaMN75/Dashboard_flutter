@@ -4,6 +4,7 @@ class AppConstants {
   static const String baseUrl = "https://api.sinamn75.com/api";
   static const String theme = "theme";
   static const String userId = "userId";
+  static const String userLogin = "userLogin";
 }
 
 enum UseCaseCategory {
@@ -42,3 +43,5 @@ enum UseCasePaymentBime {
   String toString() => name;
   final String title;
 }
+
+enum DialogMessage { info, warning, success }

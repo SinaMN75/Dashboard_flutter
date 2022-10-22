@@ -57,6 +57,7 @@ class _CategoriesPageState extends State<CategoriesPage> with CategoriesControll
           onTap: () => onDeleteTap(dto: (row.getCells()[1]).value),
         ),
         source: dataSource,
+        columnResizeMode: ColumnResizeMode.onResizeEnd,
         columns: <GridColumn>[
           GridColumn(columnName: s.order, label: gridHeader(s.order)),
           GridColumn(columnName: s.id, label: gridHeader(s.id)),

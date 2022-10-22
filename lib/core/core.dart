@@ -12,7 +12,7 @@ part 'utils.dart';
 
 class App {
   static String appVersion = "1.0.0";
-  static UserReadDto userReadDto = UserReadDto();
+  static UserReadDto? userReadDto = UserReadDto();
   static List<CategoryReadDto> categories = <CategoryReadDto>[];
   static List<ContentReadDto> contents = <ContentReadDto>[];
   static List<ContentReadDto> sliders = <ContentReadDto>[];

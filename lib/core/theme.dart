@@ -141,6 +141,8 @@ class AppImages {
 class AppIcons {
   static const String _base = "lib/assets/icons";
   static const String back = "$_base/back.svg";
+  static const String success = "$_base/success.svg";
+  static const String warning = "$_base/warning.svg";
   static const String car = "$_base/car.svg";
   static const String copy = "$_base/copy.svg";
   static const String menu = "$_base/menu.svg";
