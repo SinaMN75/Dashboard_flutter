@@ -1,6 +1,5 @@
 import 'package:dashboard/core/core.dart';
 import 'package:dashboard/views/pages/main/main_page.dart';
-import 'package:flutter/material.dart';
 import 'package:utilities/utilities.dart';
 
 mixin OtpController {
@@ -51,7 +50,7 @@ mixin OtpController {
   }
 
   void onResendCode() async {
-    showLoading();
+    await showLoading();
     await userDataSource.getVerificationCodeForLogin(
       // dto: GetMobileVerificationCodeForLoginDto(mobile: phoneNumber, sendSms: true),
       dto: GetMobileVerificationCodeForLoginDto(mobile: phoneNumber, sendSms: phoneNumber != '09132256785' && phoneNumber != '9132256785'),

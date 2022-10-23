@@ -280,6 +280,26 @@ class S {
     );
   }
 
+  /// `picture`
+  String get picture {
+    return Intl.message(
+      'picture',
+      name: 'picture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload photo`
+  String get uploadPhoto {
+    return Intl.message(
+      'Upload photo',
+      name: 'uploadPhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Seconds`
   String get seconds {
     return Intl.message(
@@ -355,6 +375,16 @@ class S {
     return Intl.message(
       'Create category',
       name: 'createCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
       desc: '',
       args: [],
     );

@@ -1,6 +1,8 @@
 import 'package:dashboard/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:lottie/lottie.dart';
 import 'package:utilities/utilities.dart';
 import 'package:utilities/utils/shamsi_date/shamsi_date.dart';
 
