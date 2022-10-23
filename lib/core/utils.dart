@@ -16,38 +16,59 @@ FormFieldValidator<String> validateNumber() => (final String? value) {
       return null;
     };
 
+Future<void> showLoading() async {
+  await EasyLoading.show(indicator: Lottie.asset('lib/assets/loading.json', width: 150, height: 150));
+}
+
+Future<void> dismissLoading() => EasyLoading.dismiss();
+
+Future<void> showError() => EasyLoading.showError("");
+
+bool isLoadingShow() => EasyLoading.isShow;
+
 String dateShamsi(final String date) => Jalali.fromDateTime(DateTime.parse(date)).toString().replaceAll("-", "/");
 
-
 void snackBarError(final String message, {final String? title}) => Get.snackbar(
-  title ?? s.warning,
-  message,
-  backgroundColor: AppColors.error,
-  colorText: Colors.white,
-);
+      title ?? s.warning,
+      message,
+      backgroundColor: AppColors.error,
+      colorText: Colors.white,
+    );
 
 FormFieldValidator<String> validateNotEmpty() => (final String? value) {
-      if (value!.isEmpty) return s.thisFieldIsRequired;
-      else  return null;
+      if (value!.isEmpty)
+        return s.thisFieldIsRequired;
+      else
+        return null;
     };
 
-void dismissKeyboard()=>FocusManager.instance.primaryFocus?.unfocus();
+void dismissKeyboard() => FocusManager.instance.primaryFocus?.unfocus();
 
-void showLoading() {
-  dialog(
-    Container(
-      width: Get.width,
-      height: Get.height,
-      color: context.theme.primaryColorDark.withOpacity(0.1),
-      child: const Center(child: CircularProgressIndicator()),
-    ),
-  );
-  delay(10000, dismissLoading);
+Color hexStringToColor(final String hexString) {
+  if (hexString.isEmpty) return Colors.transparent;
+  final StringBuffer buffer = StringBuffer();
+  if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+  buffer.write(hexString.replaceFirst('#', ''));
+  return Color(int.parse(buffer.toString(), radix: 16));
 }
-void dismissLoading() {
-  if (Get.isDialogOpen ?? false) back();
-}
+String stringToHexColor(final Color color) => '#${color.value.toRadixString(16)}';
+
+// void showLoading() {
+//   dialog(
+//     Container(
+//       width: Get.width,
+//       height: Get.height,
+//       color: context.theme.primaryColorDark.withOpacity(0.1),
+//       child: const Center(child: CircularProgressIndicator()),
+//     ),
+//   );
+//   delay(10000, dismissLoading);
+// }
+// void dismissLoading() {
+//   if (Get.isDialogOpen ?? false) back();
+// }
 bool isPersianLang() => Get.locale == const Locale("fa");
+
 void snackbar({
   required final DialogMessage dialogMessage,
   final String title = "",
@@ -62,20 +83,20 @@ void snackbar({
       backgroundColor: dialogMessage == DialogMessage.warning
           ? const Color(0xFFFEF7EA)
           : dialogMessage == DialogMessage.info
-          ? const Color(0xFFE6EFFA)
-          : const Color(0xFFEAF7EE),
+              ? const Color(0xFFE6EFFA)
+              : const Color(0xFFEAF7EE),
       borderWidth: 1,
       borderColor: dialogMessage == DialogMessage.warning
           ? const Color(0xFFECD8A0)
           : dialogMessage == DialogMessage.info
-          ? const Color(0xFF80B3EE)
-          : const Color(0xFF8FE598),
+              ? const Color(0xFF80B3EE)
+              : const Color(0xFF8FE598),
       icon: image(
         dialogMessage == DialogMessage.warning
             ? AppIcons.warning
             : dialogMessage == DialogMessage.info
-            ? AppIcons.info
-            : AppIcons.success,
+                ? AppIcons.info
+                : AppIcons.success,
         margin: EdgeInsets.only(right: isPersianLang() ? 8 : 0, left: isPersianLang() ? 0 : 8),
       ),
     );
@@ -90,11 +111,10 @@ FormFieldValidator<String> validatePassword() => (final String? value) {
     };
 
 FormFieldValidator<String> validatePhone() => (final String? value) {
-  if (value!.isEmpty) return s.thisFieldIsRequired;
-  if (!isPhoneNumber(value)) return s.incorrectMobilePhoneNumberFormat;
-  return null;
-};
-
+      if (value!.isEmpty) return s.thisFieldIsRequired;
+      if (!isPhoneNumber(value)) return s.incorrectMobilePhoneNumberFormat;
+      return null;
+    };
 
 /// Checks if string is phone number.
 bool isPhoneNumber(final String s) {

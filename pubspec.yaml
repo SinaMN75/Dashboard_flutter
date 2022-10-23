@@ -28,6 +28,9 @@ dependencies:
   syncfusion_flutter_signaturepad: ^20.3.47
   syncfusion_flutter_pdfviewer: ^20.3.47-beta
   syncfusion_flutter_treemap: ^20.3.47-beta
+  lottie: ^1.4.2
+  flutter_easyloading: ^3.0.3
+  flutter_colorpicker: ^1.0.3
 
 dev_dependencies:
   flutter_launcher_icons: ^0.9.1
@@ -46,6 +49,7 @@ flutter_icons:
 flutter:
   uses-material-design: true
   assets:
+    - lib/assets/
     - lib/assets/icons/
     - lib/assets/images/
     - lib/assets/fonts/

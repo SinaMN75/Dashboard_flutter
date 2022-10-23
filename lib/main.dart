@@ -52,7 +52,7 @@ class _AppState extends State<App> {
         supportedLocales: const <Locale>[Locale("en"), Locale("fa")],
         locale: const Locale("en"),
         theme: AppThemes.lightTheme,
-        home: const ProductCreatePage(),
+        home: const SplashPage(),
         builder: EasyLoading.init(),
       );
 }

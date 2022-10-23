@@ -46,6 +46,17 @@ enum UseCasePaymentBime {
 }
 
 
+enum BackResult {
+  ok("ok"),
+  error("error");
+
+  const BackResult(this.title);
+
+  @override
+  String toString() => name;
+  final String title;
+}
+
 enum SortLists {
   atoZ("0"),
   zToA("1"),
@@ -110,6 +121,8 @@ enum UseCaseCategory {
   service("service"),
   consultant("consultant"),
   company("company"),
+  user("user"),
+  category("category"),
   tutorial("tutorial"),
   magazine("magazine");
 

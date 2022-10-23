@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "codeSentToNumber":
             MessageLookupByLibrary.simpleMessage("Code sent to number"),
         "color": MessageLookupByLibrary.simpleMessage("Color"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "createCategory":
             MessageLookupByLibrary.simpleMessage("Create category"),
         "dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
@@ -57,6 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "order": MessageLookupByLibrary.simpleMessage("Order"),
         "parent": MessageLookupByLibrary.simpleMessage("Parent"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
+        "picture": MessageLookupByLibrary.simpleMessage("picture"),
         "pleaseEnterFourDigitPin":
             MessageLookupByLibrary.simpleMessage("Please enter four digit pin"),
         "post": MessageLookupByLibrary.simpleMessage("Products"),
@@ -78,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "type": MessageLookupByLibrary.simpleMessage("Type"),
         "updateCategory":
             MessageLookupByLibrary.simpleMessage("Update category"),
+        "uploadPhoto": MessageLookupByLibrary.simpleMessage("Upload photo"),
         "usecase": MessageLookupByLibrary.simpleMessage("UseCase"),
         "users": MessageLookupByLibrary.simpleMessage("Users"),
         "warning": MessageLookupByLibrary.simpleMessage("Warning")

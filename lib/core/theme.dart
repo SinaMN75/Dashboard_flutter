@@ -144,6 +144,8 @@ class AppIcons {
   static const String success = "$_base/success.svg";
   static const String warning = "$_base/warning.svg";
   static const String car = "$_base/car.svg";
+  static const String close = "$_base/close.svg";
+  static const String email = "$_base/email.svg";
   static const String copy = "$_base/copy.svg";
   static const String expansionArrow = "$_base/expansion_arrow.svg";
   static const String menu = "$_base/menu.svg";
@@ -156,7 +158,6 @@ class AppIcons {
   static const String sort = "$_base/sort.svg";
   static const String linkedIn = "$_base/linked_in.svg";
   static const String instagram = "$_base/instagram.svg";
-  static const String email = "$_base/email.svg";
   static const String whatsapp = "$_base/whatsapp.svg";
   static const String telegram = "$_base/telegram.svg";
   static const String user = "$_base/user.svg";
