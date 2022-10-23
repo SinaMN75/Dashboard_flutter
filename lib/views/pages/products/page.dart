@@ -1,6 +1,6 @@
 import 'package:dashboard/core/core.dart';
-import 'package:dashboard/views/pages/categories/create.dart';
 import 'package:dashboard/views/pages/products/controller.dart';
+import 'package:dashboard/views/pages/products/create.dart';
 import 'package:dashboard/views/widgets/appbar.dart';
 import 'package:dashboard/views/widgets/drawer.dart';
 import 'package:dashboard/views/widgets/grid.dart';
@@ -35,7 +35,7 @@ class _ProductsPageState extends State<ProductsPage> with ProductsController {
             ),
              IconButton(
               icon: const Icon(Icons.add_box_sharp),
-              onPressed: () => push(const CategoryCreatePage()),
+              onPressed: () => push(const ProductCreatePage()),
             ),
 
 
