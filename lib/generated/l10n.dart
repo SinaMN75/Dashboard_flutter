@@ -60,6 +60,16 @@ class S {
     );
   }
 
+  /// `Number is incorrect`
+  String get numberIsIncorrect {
+    return Intl.message(
+      'Number is incorrect',
+      name: 'numberIsIncorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Incorrect mobile phone number format`
   String get incorrectMobilePhoneNumberFormat {
     return Intl.message(
@@ -200,11 +210,161 @@ class S {
     );
   }
 
+  /// `Phone number`
+  String get phoneNumber {
+    return Intl.message(
+      'Phone number',
+      name: 'phoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next step`
+  String get nextStep {
+    return Intl.message(
+      'Next step',
+      name: 'nextStep',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Code error`
+  String get codeError {
+    return Intl.message(
+      'Code error',
+      name: 'codeError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get submit {
+    return Intl.message(
+      'Submit',
+      name: 'submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend code`
+  String get resendCode {
+    return Intl.message(
+      'Resend code',
+      name: 'resendCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Seconds to send again`
+  String get secondsToSendAgain {
+    return Intl.message(
+      'Seconds to send again',
+      name: 'secondsToSendAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend code in`
+  String get resendCodeIn {
+    return Intl.message(
+      'Resend code in',
+      name: 'resendCodeIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Seconds`
+  String get seconds {
+    return Intl.message(
+      'Seconds',
+      name: 'seconds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change phone number`
+  String get changePhoneNumber {
+    return Intl.message(
+      'Change phone number',
+      name: 'changePhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter verification code`
+  String get enterVerificationCode {
+    return Intl.message(
+      'Enter verification code',
+      name: 'enterVerificationCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Code sent to number`
+  String get codeSentToNumber {
+    return Intl.message(
+      'Code sent to number',
+      name: 'codeSentToNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter four digit pin`
+  String get pleaseEnterFourDigitPin {
+    return Intl.message(
+      'Please enter four digit pin',
+      name: 'pleaseEnterFourDigitPin',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `TitleTr2`
   String get titleTr2 {
     return Intl.message(
       'TitleTr2',
       name: 'titleTr2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Warning`
+  String get warning {
+    return Intl.message(
+      'Warning',
+      name: 'warning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create category`
+  String get createCategory {
+    return Intl.message(
+      'Create category',
+      name: 'createCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update category`
+  String get updateCategory {
+    return Intl.message(
+      'Update category',
+      name: 'updateCategory',
       desc: '',
       args: [],
     );
@@ -285,6 +445,26 @@ class S {
     return Intl.message(
       'Type',
       name: 'type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field required`
+  String get thisFieldRequired {
+    return Intl.message(
+      'This field required',
+      name: 'thisFieldRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email is incorrect`
+  String get emailIsIncorrect {
+    return Intl.message(
+      'Email is incorrect',
+      name: 'emailIsIncorrect',
       desc: '',
       args: [],
     );

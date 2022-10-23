@@ -1,0 +1,20 @@
+<svg height="48" viewBox="0 0 50 48" width="50" xmlns="http://www.w3.org/2000/svg">
+    <g data-name="Group 9613" id="Group_9613" transform="translate(-424 -1520)">
+        <g data-name="Group 9612" id="Group_9612">
+            <rect data-name="Rectangle 17902" fill="#42bc65" height="48" id="Rectangle_17902" rx="14"
+                transform="translate(424 1520)" width="50" />
+        </g>
+        <g data-name="vuesax/bold/tick-circle" id="vuesax_bold_tick-circle"
+            transform="translate(433 1527)">
+            <g data-name="vuesax/bold/tick-circle" id="vuesax_bold_tick-circle-2">
+                <g id="tick-circle">
+                    <path d="M13.75,27.5A13.75,13.75,0,1,1,27.5,13.75,13.765,13.765,0,0,1,13.75,27.5ZM7.906,12.736a1.023,1.023,0,0,0-.729.3,1.033,1.033,0,0,0,0,1.458l3.891,3.892a1.031,1.031,0,0,0,1.458,0l7.8-7.8a1.033,1.033,0,0,0,0-1.458,1.038,1.038,0,0,0-1.458,0L11.8,16.2,8.635,13.035A1.023,1.023,0,0,0,7.906,12.736Z"
+                        fill="#fff"
+                        id="Vector" transform="translate(2.75 2.75)" />
+                    <path d="M33,0V33H0V0Z" data-name="Vector" fill="#fff"
+                        id="Vector-2" opacity="0" transform="translate(33 33) rotate(180)" />
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

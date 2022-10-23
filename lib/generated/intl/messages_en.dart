@@ -23,10 +23,21 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "category": MessageLookupByLibrary.simpleMessage("Category"),
+        "changePhoneNumber":
+            MessageLookupByLibrary.simpleMessage("Change phone number"),
+        "codeError": MessageLookupByLibrary.simpleMessage("Code error"),
+        "codeSentToNumber":
+            MessageLookupByLibrary.simpleMessage("Code sent to number"),
         "color": MessageLookupByLibrary.simpleMessage("Color"),
+        "createCategory":
+            MessageLookupByLibrary.simpleMessage("Create category"),
         "dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
+        "emailIsIncorrect":
+            MessageLookupByLibrary.simpleMessage("Email is incorrect"),
+        "enterVerificationCode":
+            MessageLookupByLibrary.simpleMessage("Enter verification code"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "id": MessageLookupByLibrary.simpleMessage("Id"),
         "inactiveUsers": MessageLookupByLibrary.simpleMessage("Inactive Users"),
@@ -40,18 +51,35 @@ class MessageLookup extends MessageLookupByLibrary {
         "incorrectUsername":
             MessageLookupByLibrary.simpleMessage("Incorrect username"),
         "link": MessageLookupByLibrary.simpleMessage("Link"),
+        "nextStep": MessageLookupByLibrary.simpleMessage("Next step"),
+        "numberIsIncorrect":
+            MessageLookupByLibrary.simpleMessage("Number is incorrect"),
         "order": MessageLookupByLibrary.simpleMessage("Order"),
         "parent": MessageLookupByLibrary.simpleMessage("Parent"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
+        "pleaseEnterFourDigitPin":
+            MessageLookupByLibrary.simpleMessage("Please enter four digit pin"),
         "post": MessageLookupByLibrary.simpleMessage("Products"),
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
+        "resendCode": MessageLookupByLibrary.simpleMessage("Resend code"),
+        "resendCodeIn": MessageLookupByLibrary.simpleMessage("Resend code in"),
+        "seconds": MessageLookupByLibrary.simpleMessage("Seconds"),
+        "secondsToSendAgain":
+            MessageLookupByLibrary.simpleMessage("Seconds to send again"),
+        "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "subtitle": MessageLookupByLibrary.simpleMessage("Subtitle"),
         "thisFieldIsRequired":
             MessageLookupByLibrary.simpleMessage("This field is required"),
+        "thisFieldRequired":
+            MessageLookupByLibrary.simpleMessage("This field required"),
         "title": MessageLookupByLibrary.simpleMessage("Title"),
         "titleTr1": MessageLookupByLibrary.simpleMessage("TitleTr1"),
         "titleTr2": MessageLookupByLibrary.simpleMessage("TitleTr2"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),
+        "updateCategory":
+            MessageLookupByLibrary.simpleMessage("Update category"),
         "usecase": MessageLookupByLibrary.simpleMessage("UseCase"),
-        "users": MessageLookupByLibrary.simpleMessage("Users")
+        "users": MessageLookupByLibrary.simpleMessage("Users"),
+        "warning": MessageLookupByLibrary.simpleMessage("Warning")
       };
 }

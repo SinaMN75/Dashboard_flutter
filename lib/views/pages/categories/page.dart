@@ -1,5 +1,6 @@
 import 'package:dashboard/core/core.dart';
 import 'package:dashboard/views/pages/categories/controller.dart';
+import 'package:dashboard/views/pages/categories/create.dart';
 import 'package:dashboard/views/widgets/appbar.dart';
 import 'package:dashboard/views/widgets/drawer.dart';
 import 'package:dashboard/views/widgets/grid.dart';
@@ -18,6 +19,7 @@ class _CategoriesPageState extends State<CategoriesPage> with CategoriesControll
   @override
   void initState() {
     dataSource = DataSource(list);
+    addListCategoryUseCase();
     super.initState();
   }
 
@@ -31,6 +33,12 @@ class _CategoriesPageState extends State<CategoriesPage> with CategoriesControll
               icon: const Icon(Icons.picture_as_pdf),
               onPressed: exportDataGridToPdf,
             ),
+             IconButton(
+              icon: const Icon(Icons.add_box_sharp),
+              onPressed: () => push(const CategoryCreatePage()),
+            ),
+
+
           ],
         ),
         drawer: drawer(),
@@ -57,6 +65,7 @@ class _CategoriesPageState extends State<CategoriesPage> with CategoriesControll
           onTap: () => onDeleteTap(dto: (row.getCells()[1]).value),
         ),
         source: dataSource,
+        columnResizeMode: ColumnResizeMode.onResizeEnd,
         columns: <GridColumn>[
           GridColumn(columnName: s.order, label: gridHeader(s.order)),
           GridColumn(columnName: s.id, label: gridHeader(s.id)),
