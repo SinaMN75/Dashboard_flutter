@@ -19,12 +19,11 @@ class CategoryDetailPage extends StatefulWidget {
 }
 
 class _CategoryDetailPageState extends State<CategoryDetailPage> with CategoriesController {
-  late final CategoryReadDto? category2;
-
   @override
   void initState() {
     addListCategoryUseCase();
     addListCategoryType();
+    addListMediaUseCase();
     setParam();
     super.initState();
   }
@@ -33,6 +32,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
     if (widget.category != null) {
       titleController.text = widget.category?.title ?? '';
       subTitleController.text = widget.category?.subtitle ?? '';
+      pickerColor = hexStringToColor(widget.category?.color ?? '#ff067e19');
       for (int i = 0; i < listCategoryUseCase.length; i++) {
         final String p1 = listCategoryUseCase[i];
         final String p2 = widget.category?.useCase ?? '';
@@ -40,6 +40,13 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
           selectedCategoryUseCase.value = listCategoryUseCase[i];
         }
       }
+      // for (int i = 0; i < listMediaUseCase.length; i++) {
+      //   final String p1 = listMediaUseCase[i];
+      //   final String p2 = widget.category?.media?.first.useCase ?? '';
+      //   if (p1 == p2) {
+      //     selectedMediaUseCase.value = listMediaUseCase[i];
+      //   }
+      // }
 
       for (int i = 0; i < listCategoryType.length; i++) {
         final String p1 = listCategoryType[i];
@@ -52,7 +59,8 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
   }
 
   @override
-  Widget build(final BuildContext context) => scaffold(
+  Widget build(final BuildContext context) =>
+      scaffold(
         constraints: const BoxConstraints(minWidth: 1000),
         appBar: appbar(title: s.createCategory),
         drawer: drawer(),
@@ -72,7 +80,8 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
                 onChanged: (final String value) {},
                 controller: subTitleController,
               ),
-              Obx(() => AppDropDown<String>(
+              Obx(() =>
+                  AppDropDown<String>(
                     onChange: (final String value) {
                       selectedCategoryUseCase.value = value;
                     },
@@ -81,11 +90,12 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
                     value: selectedCategoryUseCase.value,
                     items: listCategoryUseCase
                         .map(
-                          (final String e) => DropdownMenuItem<String>(value: e, child: Text(e )),
-                        )
+                          (final String e) => DropdownMenuItem<String>(value: e, child: Text(e)),
+                    )
                         .toList(),
                   )),
-              Obx(() => AppDropDown<String>(
+              Obx(() =>
+                  AppDropDown<String>(
                     onChange: (final String value) {
                       selectedCategoryType.value = value;
                     },
@@ -94,49 +104,67 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
                     value: selectedCategoryType.value,
                     items: listCategoryType
                         .map(
-                          (final String e) => DropdownMenuItem<String>(value: e, child: Text(e )),
-                        )
+                          (final String e) => DropdownMenuItem<String>(value: e, child: Text(e)),
+                    )
                         .toList(),
                   )),
               _selectImageWeb(),
               _selectColor(),
               widget.category != null
                   ? button(
-                      title: s.updateCategory,
-                      onTap: () {
-                        validateForm(
-                          key: globalKey,
-                          action: () {
-                            updateCategory(widget.category!, action: () => Get.back(result: BackResult.ok.title));
-                          },
-                        );
-                      },
-                    )
+                title: s.updateCategory,
+                onTap: () {
+                  validateForm(
+                    key: globalKey,
+                    action: () {
+                      updateCategory(widget.category!, action: () => Get.back(result: BackResult.ok.title));
+                    },
+                  );
+                },
+              )
                   : button(
-                      title: s.confirm,
-                      onTap: () {
-                        validateForm(
-                          key: globalKey,
-                          action: () {
-                            confirm(
-                              action: () => Get.back(result: BackResult.ok.title),
-                            );
-                          },
-                        );
-                      },
-                    ),
+                title: s.confirm,
+                onTap: () {
+                  validateForm(
+                    key: globalKey,
+                    action: () {
+                      confirm(
+                        action: () => Get.back(result: BackResult.ok.title),
+                      );
+                    },
+                  );
+                },
+              ),
             ],
           ),
         ),
       );
 
-  Widget _selectImageWeb() => iconTextVertical(
+  Widget _selectImageWeb() =>
+      iconTextVertical(
         crossAxisAlignment: CrossAxisAlignment.start,
         leading: formLabel(s.picture),
         trailing: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: <Widget>[
+              SizedBox(
+                width: 200,
+                child: Obx(() =>
+                    AppDropDown<String>(
+                      onChange: (final String value) {
+                        selectedMediaUseCase.value = value;
+                      },
+                      title: s.usecase,
+                      icon: image(AppIcons.expansionArrow),
+                      value: selectedMediaUseCase.value,
+                      items: listMediaUseCase
+                          .map(
+                            (final String e) => DropdownMenuItem<String>(value: e, child: Text(e)),
+                      )
+                          .toList(),
+                    )),
+              ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 width: 150,
@@ -151,16 +179,30 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
                   trailing: Text(s.uploadPhoto).subtitle1(color: context.theme.primaryColor),
                 ),
               ).onTap(
-                () => showFilePickerWeb(
-                  action: (final PlatformFile file) {
-                    imagess.add(file);
-                    setState(() {});
-                  },
-                ),
+                    () =>
+                    showFilePickerWeb(
+                      action: (final PlatformFile file) {
+                        imagess.add(file);
+                        setState(() {});
+                      },
+                    ),
+              ),
+              Container(
+                child: imagess.isNotEmpty || filess.isNotEmpty
+                    ? Container()
+                    : widget.category?.media?.isNotEmpty ?? false ? Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: image(widget.category?.media?.first.url ?? ''),
+                ):Container(),
               ),
               ...imagess
                   .map(
-                    (final PlatformFile e) => Stack(
+                    (final PlatformFile e) =>
+                    Stack(
                       alignment: Alignment.topRight,
                       children: <Widget>[
                         Container(
@@ -173,58 +215,56 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
                         ),
                         image(AppIcons.close,
                             width: 20,
-                            onTap: () => setState(() {
+                            onTap: () =>
+                                setState(() {
                                   imagess.remove(e);
                                 })),
                       ],
                     ).marginSymmetric(horizontal: 10),
-                  )
+              )
                   .toList()
             ],
           ),
         ),
       );
 
-
-
-
-  Widget _selectColor(){
-     Color currentColor=hexToColor(widget.category?.color??"#1976D2");
+  Widget _selectColor() {
+    Color currentColor = hexToColor(widget.category?.color ?? "#1976D2");
     return button(
-        onTap: () {
-          showDialog(
-            context: context,
-            builder: (final BuildContext context) => AlertDialog(
-              title: const Text('Pick a color!'),
-              content: SingleChildScrollView(
-                child: ColorPicker(
-                  pickerColor: pickerColor,
-                  onColorChanged: (final Color value) => setState(() {
-                    currentColor = value;
-                  }),
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (final BuildContext context) =>
+              AlertDialog(
+                title: const Text('Pick a color!'),
+                content: SingleChildScrollView(
+                  child: ColorPicker(
+                    pickerColor: pickerColor,
+                    onColorChanged: (final Color value) =>
+                        setState(() {
+                          currentColor = value;
+                        }),
+                  ),
                 ),
+                actions: <Widget>[
+                  ElevatedButton(
+                    child: const Text('Got it'),
+                    onPressed: () {
+                      setState(() => pickerColor = currentColor);
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
               ),
-              actions: <Widget>[
-                ElevatedButton(
-                  child: const Text('Got it'),
-                  onPressed: () {
-                    setState(() => pickerColor=currentColor);
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ),
-          );
-
-        },
-        title: 'dd',
+        );
+      },
+      title: 'dd',
       backgroundColor: pickerColor,
-
-
     );
   }
 
-  Widget formLabel(final String text) => Padding(
+  Widget formLabel(final String text) =>
+      Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Text(
           text,

@@ -133,6 +133,24 @@ enum UseCaseCategory {
   final String title;
 }
 
+
+enum UseCaseMedia {
+  image("image"),
+  all("all"),
+  audio("audio"),
+  video("video"),
+  media("media"),
+  text("text");
+
+  const UseCaseMedia(this.title);
+
+  @override
+  String toString() => name;
+  final String title;
+}
+
+
+
 enum UseCaseNotification {
   success("success"),
   error("error"),

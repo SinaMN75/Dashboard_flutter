@@ -29,7 +29,9 @@ mixin CategoriesController {
   List<PlatformFile> filess = <PlatformFile>[];
 
   List<String> listCategoryUseCase = <String>[];
+  List<String> listMediaUseCase = <String>[];
   RxString selectedCategoryUseCase = ''.obs;
+  RxString selectedMediaUseCase = ''.obs;
   List<String> listCategoryType = <String>[];
   RxString selectedCategoryType = ''.obs;
   final GlobalKey<SfDataGridState> gridKey = GlobalKey<SfDataGridState>();
@@ -60,7 +62,7 @@ mixin CategoriesController {
 
   // void onEditTap({required final CategoryReadDto dto}) => push(CategoryDetailPage(category: dto));
   void onEditTap({required final CategoryReadDto dto, required final VoidCallback action}) async {
-    final String? res = await Get.to( CategoryDetailPage(category: dto));
+    final String? res = await Get.to(CategoryDetailPage(category: dto));
     if (res == BackResult.ok.title) {
       initApp(action: action);
     }
@@ -95,7 +97,14 @@ mixin CategoriesController {
       listCategoryUseCase.add(element.title);
     });
     selectedCategoryUseCase.value = UseCaseCategory.values.first.title;
+  }
 
+  void addListMediaUseCase() {
+    const List<UseCaseMedia> listUsecaseCategory = UseCaseMedia.values;
+    listUsecaseCategory.forEach((final UseCaseMedia element) {
+      listMediaUseCase.add(element.title);
+    });
+    selectedMediaUseCase.value = UseCaseMedia.values.first.title;
   }
 
   void addListCategoryType() {
@@ -104,7 +113,6 @@ mixin CategoriesController {
       listCategoryType.add(element.title);
     });
     selectedCategoryType.value = CategoryType.values.first.title;
-
   }
 
   void updateCategory(final CategoryReadDto categoryReadDto, {required final VoidCallback action}) {
@@ -115,30 +123,52 @@ mixin CategoriesController {
       useCase: selectedCategoryUseCase.value,
       type: selectedCategoryType.value,
       color: stringToHexColor(pickerColor),
-
     );
     categoryDataSource.update(
         dto: filter,
         onResponse: (final GenericResponse<CategoryReadDto> response) async {
           if (imagess.isNotEmpty) {
-            await mediaDataSource.createWebV2(
-              useCase: "media",
-              productId: response.result!.id,
-              files: <PlatformFile>[
-                ...imagess,
-                ...filess,
-              ],
-              action: action,
-              error: (final int statusCode) {
-                action();
-              },
-            );
+            if (categoryReadDto.media?.isNotEmpty ?? false) {
+              await mediaDataSource.delete(
+                id: categoryReadDto.media?.first.id ?? '',
+                onResponse: (final GenericResponse<dynamic> response2) {
+                  mediaDataSource.createWebV2(
+                    useCase: selectedMediaUseCase.value,
+                    categoryId: response.result!.id,
+                    files: <PlatformFile>[
+                      ...imagess,
+                      ...filess,
+                    ],
+                    action: action,
+                    error: (final int statusCode) {
+                      action();
+                    },
+                  );
+                },
+                onError: (final GenericResponse<dynamic> errorResponse) {
+                  //
+                  //
+                },
+              );
+            } else {
+              await mediaDataSource.createWebV2(
+                useCase: selectedMediaUseCase.value,
+                categoryId: response.result!.id,
+                files: <PlatformFile>[
+                  ...imagess,
+                  ...filess,
+                ],
+                action: action,
+                error: (final int statusCode) {
+                  action();
+                },
+              );
+            }
           } else {
             action();
           }
         },
-        onError: (final GenericResponse<dynamic> errorResponse) {
-        });
+        onError: (final GenericResponse<dynamic> errorResponse) {});
   }
 
   void confirm({required final VoidCallback action}) {
@@ -147,18 +177,16 @@ mixin CategoriesController {
       subtitle: subTitleController.text,
       useCase: selectedCategoryUseCase.value,
       type: selectedCategoryType.value,
+      color: stringToHexColor(pickerColor),
     );
     categoryDataSource.create(
       dto: filter,
       onResponse: (final GenericResponse<CategoryReadDto> response) async {
         if (imagess.isNotEmpty || filess.isNotEmpty) {
           await mediaDataSource.createWebV2(
-            useCase: "media",
-            productId: response.result!.id,
-            files: <PlatformFile>[
-              ...imagess,
-              ...filess,
-            ],
+            useCase: selectedMediaUseCase.value,
+            categoryId: response.result!.id,
+            files: <PlatformFile>[...imagess, ...filess],
             action: action,
             error: (final int statusCode) {
               action();
@@ -168,19 +196,17 @@ mixin CategoriesController {
           action();
         }
       },
-      onError: (final GenericResponse<dynamic> errorResponse) {
-      },
+      onError: (final GenericResponse<dynamic> errorResponse) {},
     );
   }
 
-  Color hexToColor(final String code) =>  Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
+  Color hexToColor(final String code) => Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
 
   void deleteCategory({required final CategoryReadDto category, required final VoidCallback action}) {
     categoryDataSource.delete(
       id: category.id ?? "",
       onResponse: (final GenericResponse<dynamic> response) {
         initApp(action: action);
-
       },
       onError: (final GenericResponse<dynamic> errorResponse) {
         initApp(action: action);
