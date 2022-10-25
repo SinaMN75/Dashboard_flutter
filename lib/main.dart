@@ -49,6 +49,7 @@ class _AppState extends State<App> {
         locale: const Locale("en"),
         theme: AppThemes.lightTheme,
         home: const SplashPage(),
+        // home: const CategoriesPage(),
         builder: EasyLoading.init(),
       );
 }

@@ -12,28 +12,26 @@ mixin CategoriesController {
   final Rx<PageState> state = PageState.initial.obs;
 
   GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-
   CategoryDataSource categoryDataSource = CategoryDataSource(baseUrl: AppConstants.baseUrl);
   MediaDataSource mediaDataSource = MediaDataSource(baseUrl: AppConstants.baseUrl);
   FormDataSource formDataSource = FormDataSource(baseUrl: AppConstants.baseUrl);
   List<FormReadDto> forms = <FormReadDto>[];
+  List<String> listOfDeleteFile = <String>[];
+  List<String> listOfDeleteImage = <String>[];
+  List<PlatformFile> listOfNewFile = <PlatformFile>[];
+  List<PlatformFile> listOfNewImage = <PlatformFile>[];
 
   /// ********** CONTROLLER ***************/
   TextEditingController titleController = TextEditingController();
   TextEditingController subTitleController = TextEditingController();
+  TextEditingController titleTr1Controller = TextEditingController();
+  TextEditingController titleTr2Controller = TextEditingController();
+  TextEditingController linkController = TextEditingController();
 
   /// ********** OTHER ***************/
 
   Color pickerColor = Colors.blue;
-  List<PlatformFile> imagess = <PlatformFile>[];
-  List<PlatformFile> filess = <PlatformFile>[];
 
-  List<String> listCategoryUseCase = <String>[];
-  List<String> listMediaUseCase = <String>[];
-  RxString selectedCategoryUseCase = ''.obs;
-  RxString selectedMediaUseCase = ''.obs;
-  List<String> listCategoryType = <String>[];
-  RxString selectedCategoryType = ''.obs;
   final GlobalKey<SfDataGridState> gridKey = GlobalKey<SfDataGridState>();
   late DataSource dataSource;
   List<CategoryReadDto> list = App.categories;
@@ -91,105 +89,27 @@ mixin CategoriesController {
     document.dispose();
   }
 
-  void addListCategoryUseCase() {
-    const List<UseCaseCategory> listUsecaseCategory = UseCaseCategory.values;
-    listUsecaseCategory.forEach((final UseCaseCategory element) {
-      listCategoryUseCase.add(element.title);
-    });
-    selectedCategoryUseCase.value = UseCaseCategory.values.first.title;
-  }
-
-  void addListMediaUseCase() {
-    const List<UseCaseMedia> listUsecaseCategory = UseCaseMedia.values;
-    listUsecaseCategory.forEach((final UseCaseMedia element) {
-      listMediaUseCase.add(element.title);
-    });
-    selectedMediaUseCase.value = UseCaseMedia.values.first.title;
-  }
-
-  void addListCategoryType() {
-    const List<CategoryType> listTypeCategory = CategoryType.values;
-    listTypeCategory.forEach((final CategoryType element) {
-      listCategoryType.add(element.title);
-    });
-    selectedCategoryType.value = CategoryType.values.first.title;
-  }
-
-  void updateCategory(final CategoryReadDto categoryReadDto, {required final VoidCallback action}) {
-    final CategoryCreateUpdateDto filter = CategoryCreateUpdateDto(
-      id: categoryReadDto.id,
-      title: titleController.text,
-      subtitle: subTitleController.text,
-      useCase: selectedCategoryUseCase.value,
-      type: selectedCategoryType.value,
-      color: stringToHexColor(pickerColor),
-    );
-    categoryDataSource.update(
-        dto: filter,
-        onResponse: (final GenericResponse<CategoryReadDto> response) async {
-          if (imagess.isNotEmpty) {
-            if (categoryReadDto.media?.isNotEmpty ?? false) {
-              await mediaDataSource.delete(
-                id: categoryReadDto.media?.first.id ?? '',
-                onResponse: (final GenericResponse<dynamic> response2) {
-                  mediaDataSource.createWebV2(
-                    useCase: selectedMediaUseCase.value,
-                    categoryId: response.result!.id,
-                    files: <PlatformFile>[
-                      ...imagess,
-                      ...filess,
-                    ],
-                    action: action,
-                    error: (final int statusCode) {
-                      action();
-                    },
-                  );
-                },
-                onError: (final GenericResponse<dynamic> errorResponse) {
-                  //
-                  //
-                },
-              );
-            } else {
-              await mediaDataSource.createWebV2(
-                useCase: selectedMediaUseCase.value,
-                categoryId: response.result!.id,
-                files: <PlatformFile>[
-                  ...imagess,
-                  ...filess,
-                ],
-                action: action,
-                error: (final int statusCode) {
-                  action();
-                },
-              );
-            }
-          } else {
-            action();
-          }
-        },
-        onError: (final GenericResponse<dynamic> errorResponse) {});
-  }
-
-  void confirm({required final VoidCallback action}) {
+  void confirm({
+    required final VoidCallback action,
+  }) {
     final CategoryCreateUpdateDto filter = CategoryCreateUpdateDto(
       title: titleController.text,
       subtitle: subTitleController.text,
-      useCase: selectedCategoryUseCase.value,
-      type: selectedCategoryType.value,
+      titleTr1: titleTr1Controller.text,
+      titleTr2: titleTr2Controller.text,
+      link: linkController.text,
+      useCase: UseCaseCategory.category.title,
+      type: CategoryType.category.title,
       color: stringToHexColor(pickerColor),
     );
     categoryDataSource.create(
       dto: filter,
       onResponse: (final GenericResponse<CategoryReadDto> response) async {
-        if (imagess.isNotEmpty || filess.isNotEmpty) {
-          await mediaDataSource.createWebV2(
-            useCase: selectedMediaUseCase.value,
-            categoryId: response.result!.id,
-            files: <PlatformFile>[...imagess, ...filess],
-            action: action,
-            error: (final int statusCode) {
-              action();
+        if (listOfNewFile.isNotEmpty || listOfNewImage.isNotEmpty) {
+          await addNewFiles(
+            response.result?.id ?? '',
+            action: () async {
+              await addNewImage(response.result?.id ?? '', action: action);
             },
           );
         } else {
@@ -198,6 +118,97 @@ mixin CategoriesController {
       },
       onError: (final GenericResponse<dynamic> errorResponse) {},
     );
+  }
+
+  void updateCategory(final CategoryReadDto categoryReadDto, {required final VoidCallback action}) {
+    final CategoryCreateUpdateDto filter = CategoryCreateUpdateDto(
+      id: categoryReadDto.id,
+      title: titleController.text,
+      subtitle: subTitleController.text,
+      titleTr1: titleTr1Controller.text,
+      titleTr2: titleTr2Controller.text,
+      link: linkController.text,
+      useCase: UseCaseCategory.category.title,
+      type: CategoryType.category.title,
+      color: stringToHexColor(pickerColor),
+    );
+    categoryDataSource.update(
+      dto: filter,
+      onResponse: (final GenericResponse<CategoryReadDto> response) async {
+        await deleteOldFiles(
+          response.result?.id ?? '',
+          action: () async {
+            await addNewFiles(
+              response.result?.id ?? '',
+              action: () async {
+                await addNewImage(response.result?.id ?? '', action: action);
+              },
+            );
+          },
+        );
+      },
+      onError: (final GenericResponse<dynamic> errorResponse) {},
+    );
+  }
+
+  Future<void> deleteOldFiles(final String catId, {required final VoidCallback action}) async {
+    if (listOfDeleteFile.isNotEmpty) {
+      int countDelete = 0;
+      for (int i = 0; i < listOfDeleteFile.length; i++) {
+        await mediaDataSource.delete(
+          id: listOfDeleteFile[i],
+          onResponse: (final GenericResponse<dynamic> response2) {
+            if (countDelete == listOfDeleteFile.length - 1) {
+              action();
+            }
+            countDelete++;
+          },
+          onError: (final GenericResponse<dynamic> errorResponse) {},
+        );
+      }
+    } else {
+      action();
+    }
+  }
+
+  Future<void> addNewFiles(final String catId, {required final VoidCallback action}) async {
+    if (listOfNewFile.isNotEmpty) {
+      for (int i = 0; i < listOfNewFile.length; i++) {
+        await mediaDataSource.createWebV2(
+          useCase: UseCaseMedia.all.title,
+          categoryId: catId,
+          files: <PlatformFile>[
+            ...<PlatformFile>[listOfNewFile[i]],
+          ],
+          action: action,
+          error: (final int statusCode) {
+            action();
+          },
+        );
+      }
+    } else {
+      action();
+    }
+  }
+
+  Future<void> addNewImage(final String catId, {required final VoidCallback action}) async {
+    if (listOfNewImage.isNotEmpty) {
+      for (int i = 0; i < listOfNewImage.length; i++) {
+        await mediaDataSource.createWebV2(
+          useCase: UseCaseMedia.image.title,
+          categoryId: catId,
+          files: <PlatformFile>[
+            ...<PlatformFile>[listOfNewImage[i]],
+          ],
+          action: action,
+          error: (final int statusCode) {
+            action();
+          },
+        );
+      }
+    } else {
+      action();
+    }
   }
 
   Color hexToColor(final String code) => Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
@@ -222,16 +233,12 @@ class DataSource extends DataGridSource {
           (final int index, final CategoryReadDto e) => DataGridRow(
             cells: <DataGridCell>[
               DataGridCell<int>(columnName: index.toString(), value: index),
-              DataGridCell<CategoryReadDto>(columnName: e.id ?? "", value: e),
               DataGridCell<CategoryReadDto>(columnName: e.title ?? "", value: e),
+              DataGridCell<CategoryReadDto>(columnName: e.subtitle ?? "", value: e),
               DataGridCell<CategoryReadDto>(columnName: e.titleTr1 ?? "", value: e),
               DataGridCell<CategoryReadDto>(columnName: e.titleTr2 ?? "", value: e),
-              DataGridCell<CategoryReadDto>(columnName: e.subtitle ?? "", value: e),
               DataGridCell<CategoryReadDto>(columnName: e.color ?? "", value: e),
               DataGridCell<CategoryReadDto>(columnName: e.link ?? "", value: e),
-              DataGridCell<CategoryReadDto>(columnName: e.parent?.title ?? "", value: e),
-              DataGridCell<CategoryReadDto>(columnName: e.useCase ?? "", value: e),
-              DataGridCell<CategoryReadDto>(columnName: e.type ?? "", value: e),
             ],
           ),
         )

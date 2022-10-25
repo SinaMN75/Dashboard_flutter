@@ -290,6 +290,36 @@ class S {
     );
   }
 
+  /// `Select`
+  String get select {
+    return Intl.message(
+      'Select',
+      name: 'select',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Files`
+  String get files {
+    return Intl.message(
+      'Files',
+      name: 'files',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pick a color!`
+  String get pickColor {
+    return Intl.message(
+      'Pick a color!',
+      name: 'pickColor',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Upload photo`
   String get uploadPhoto {
     return Intl.message(
@@ -475,6 +505,126 @@ class S {
     return Intl.message(
       'Type',
       name: 'type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `App email`
+  String get appEmail {
+    return Intl.message(
+      'App email',
+      name: 'appEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User name`
+  String get userName {
+    return Intl.message(
+      'User name',
+      name: 'userName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wallet`
+  String get wallet {
+    return Intl.message(
+      'Wallet',
+      name: 'wallet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your phone number`
+  String get enterYourPhoneNumber {
+    return Intl.message(
+      'Enter your phone number',
+      name: 'enterYourPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `bio`
+  String get bio {
+    return Intl.message(
+      'bio',
+      name: 'bio',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Point`
+  String get point {
+    return Intl.message(
+      'Point',
+      name: 'point',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create at`
+  String get createAt {
+    return Intl.message(
+      'Create at',
+      name: 'createAt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select color`
+  String get selectColor {
+    return Intl.message(
+      'Select color',
+      name: 'selectColor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select image`
+  String get selectImage {
+    return Intl.message(
+      'Select image',
+      name: 'selectImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select file`
+  String get selectFile {
+    return Intl.message(
+      'Select file',
+      name: 'selectFile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update at`
+  String get updateAt {
+    return Intl.message(
+      'Update at',
+      name: 'updateAt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gender`
+  String get gender {
+    return Intl.message(
+      'Gender',
+      name: 'gender',
       desc: '',
       args: [],
     );

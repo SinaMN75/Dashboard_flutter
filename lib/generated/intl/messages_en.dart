@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "appEmail": MessageLookupByLibrary.simpleMessage("App email"),
+        "bio": MessageLookupByLibrary.simpleMessage("bio"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
         "changePhoneNumber":
             MessageLookupByLibrary.simpleMessage("Change phone number"),
@@ -30,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Code sent to number"),
         "color": MessageLookupByLibrary.simpleMessage("Color"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "createAt": MessageLookupByLibrary.simpleMessage("Create at"),
         "createCategory":
             MessageLookupByLibrary.simpleMessage("Create category"),
         "dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
@@ -39,7 +42,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Email is incorrect"),
         "enterVerificationCode":
             MessageLookupByLibrary.simpleMessage("Enter verification code"),
+        "enterYourPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("Enter your phone number"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
+        "files": MessageLookupByLibrary.simpleMessage("Files"),
+        "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "id": MessageLookupByLibrary.simpleMessage("Id"),
         "inactiveUsers": MessageLookupByLibrary.simpleMessage("Inactive Users"),
         "incorrectEmailFormat":
@@ -58,9 +65,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "order": MessageLookupByLibrary.simpleMessage("Order"),
         "parent": MessageLookupByLibrary.simpleMessage("Parent"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
+        "pickColor": MessageLookupByLibrary.simpleMessage("Pick a color!"),
         "picture": MessageLookupByLibrary.simpleMessage("picture"),
         "pleaseEnterFourDigitPin":
             MessageLookupByLibrary.simpleMessage("Please enter four digit pin"),
+        "point": MessageLookupByLibrary.simpleMessage("Point"),
         "post": MessageLookupByLibrary.simpleMessage("Products"),
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "resendCode": MessageLookupByLibrary.simpleMessage("Resend code"),
@@ -68,6 +77,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "seconds": MessageLookupByLibrary.simpleMessage("Seconds"),
         "secondsToSendAgain":
             MessageLookupByLibrary.simpleMessage("Seconds to send again"),
+        "select": MessageLookupByLibrary.simpleMessage("Select"),
+        "selectColor": MessageLookupByLibrary.simpleMessage("Select color"),
+        "selectFile": MessageLookupByLibrary.simpleMessage("Select file"),
+        "selectImage": MessageLookupByLibrary.simpleMessage("Select image"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "subtitle": MessageLookupByLibrary.simpleMessage("Subtitle"),
         "thisFieldIsRequired":
@@ -78,11 +91,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "titleTr1": MessageLookupByLibrary.simpleMessage("TitleTr1"),
         "titleTr2": MessageLookupByLibrary.simpleMessage("TitleTr2"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),
+        "updateAt": MessageLookupByLibrary.simpleMessage("Update at"),
         "updateCategory":
             MessageLookupByLibrary.simpleMessage("Update category"),
         "uploadPhoto": MessageLookupByLibrary.simpleMessage("Upload photo"),
         "usecase": MessageLookupByLibrary.simpleMessage("UseCase"),
+        "userName": MessageLookupByLibrary.simpleMessage("User name"),
         "users": MessageLookupByLibrary.simpleMessage("Users"),
+        "wallet": MessageLookupByLibrary.simpleMessage("Wallet"),
         "warning": MessageLookupByLibrary.simpleMessage("Warning")
       };
 }

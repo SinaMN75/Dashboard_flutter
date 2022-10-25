@@ -136,6 +136,7 @@ class AppImages {
   static const String _base = "lib/assets/images";
   static const String shapeLogIn = "$_base/shape_log_in.png";
   static const String slider = "$_base/slider.svg";
+  static const String backImage = "$_base/back_image.jpg";
 }
 
 class AppIcons {
@@ -145,6 +146,8 @@ class AppIcons {
   static const String warning = "$_base/warning.svg";
   static const String car = "$_base/car.svg";
   static const String close = "$_base/close.svg";
+  static const String image = "$_base/image.svg";
+  static const String singlePost = "$_base/single_post.svg";
   static const String email = "$_base/email.svg";
   static const String copy = "$_base/copy.svg";
   static const String expansionArrow = "$_base/expansion_arrow.svg";

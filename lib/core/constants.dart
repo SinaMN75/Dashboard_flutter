@@ -17,6 +17,15 @@ class AppConstants {
 //   final String title;
 // }
 
+BoxDecoration appDecoration() => BoxDecoration(
+      borderRadius: BorderRadius.circular(8),
+      color: context.theme.backgroundColor,
+      boxShadow: const <BoxShadow>[
+// BoxShadow(color: AppColorsDark.disabled,),
+        BoxShadow(offset: Offset(0, 1), blurRadius: 2),
+      ],
+    );
+
 enum UseCaseBime {
   bime("bime");
 
@@ -26,6 +35,7 @@ enum UseCaseBime {
   String toString() => name;
   final String title;
 }
+
 enum UseCaseSlider {
   sliderBime("sliderBime");
 
@@ -35,6 +45,7 @@ enum UseCaseSlider {
   String toString() => name;
   final String title;
 }
+
 enum UseCasePaymentBime {
   paymentBime("paymentBime");
 
@@ -44,7 +55,6 @@ enum UseCasePaymentBime {
   String toString() => name;
   final String title;
 }
-
 
 enum BackResult {
   ok("ok"),
@@ -133,7 +143,6 @@ enum UseCaseCategory {
   final String title;
 }
 
-
 enum UseCaseMedia {
   image("image"),
   all("all"),
@@ -148,8 +157,6 @@ enum UseCaseMedia {
   String toString() => name;
   final String title;
 }
-
-
 
 enum UseCaseNotification {
   success("success"),
