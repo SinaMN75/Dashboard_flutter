@@ -57,7 +57,7 @@ class _CategoriesPageState extends State<CategoriesPage> with CategoriesControll
             ),
             Center(
               child: Container(
-                width: 900,
+                width: 930,
                 margin: const EdgeInsets.symmetric(vertical: 16),
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 decoration: appDecoration(),

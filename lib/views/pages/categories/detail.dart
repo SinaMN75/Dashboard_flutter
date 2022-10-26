@@ -1,7 +1,6 @@
 import 'package:dashboard/core/core.dart';
 import 'package:dashboard/views/pages/categories/controller.dart';
 import 'package:dashboard/views/widgets/appbar.dart';
-import 'package:dashboard/views/widgets/drawer.dart';
 import 'package:dashboard/views/widgets/form.dart';
 import 'package:dashboard/widget/widgets.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +64,6 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
   Widget build(final BuildContext context) => scaffold(
         constraints: const BoxConstraints(minWidth: 1000),
         appBar: appbar(title: s.createCategory),
-        drawer: drawer(),
         body: Stack(
           children: <Widget>[
             Positioned.fill(
@@ -86,6 +84,8 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
                       crossAxisAlignment: CrossAxisAlignment.start,
                       isScrollable: true,
                       children: <Widget>[
+
+                        Text(widget.category!=null?s.updateCategory:s.createCategory).headline6(fontSize: 24,fontWeight: FontWeight.bold).marginSymmetric(vertical: 16,horizontal: 8),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                           child: textFormField(
