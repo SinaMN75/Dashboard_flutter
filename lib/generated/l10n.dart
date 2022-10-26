@@ -560,11 +560,201 @@ class S {
     );
   }
 
+  /// `Ads`
+  String get ads {
+    return Intl.message(
+      'Ads',
+      name: 'ads',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create ads`
+  String get createAds {
+    return Intl.message(
+      'Create ads',
+      name: 'createAds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update ads`
+  String get updateAds {
+    return Intl.message(
+      'Update ads',
+      name: 'updateAds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jobs`
+  String get jobs {
+    return Intl.message(
+      'Jobs',
+      name: 'jobs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create jobs`
+  String get createJobs {
+    return Intl.message(
+      'Create jobs',
+      name: 'createJobs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update jobs`
+  String get updateJobs {
+    return Intl.message(
+      'Update jobs',
+      name: 'updateJobs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Magazine`
+  String get magazine {
+    return Intl.message(
+      'Magazine',
+      name: 'magazine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create magazine`
+  String get createMagazine {
+    return Intl.message(
+      'Create magazine',
+      name: 'createMagazine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update magazine`
+  String get updateMagazine {
+    return Intl.message(
+      'Update magazine',
+      name: 'updateMagazine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Learn`
+  String get learn {
+    return Intl.message(
+      'Learn',
+      name: 'learn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create learn`
+  String get createLearn {
+    return Intl.message(
+      'Create learn',
+      name: 'createLearn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update learn`
+  String get updateLearn {
+    return Intl.message(
+      'Update learn',
+      name: 'updateLearn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily price`
+  String get dailyPrice {
+    return Intl.message(
+      'Daily price',
+      name: 'dailyPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Daily price`
+  String get createDailyPrice {
+    return Intl.message(
+      'Create Daily price',
+      name: 'createDailyPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Daily price`
+  String get updateDailyPrice {
+    return Intl.message(
+      'Update Daily price',
+      name: 'updateDailyPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Projects`
+  String get projects {
+    return Intl.message(
+      'Projects',
+      name: 'projects',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create projects`
+  String get createProjects {
+    return Intl.message(
+      'Create projects',
+      name: 'createProjects',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update projects`
+  String get updateProjects {
+    return Intl.message(
+      'Update projects',
+      name: 'updateProjects',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Tenders`
   String get tenders {
     return Intl.message(
       'Tenders',
       name: 'tenders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update`
+  String get update {
+    return Intl.message(
+      'Update',
+      name: 'update',
       desc: '',
       args: [],
     );

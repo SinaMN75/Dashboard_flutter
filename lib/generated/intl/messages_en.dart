@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "ads": MessageLookupByLibrary.simpleMessage("Ads"),
         "appEmail": MessageLookupByLibrary.simpleMessage("App email"),
         "areYouSureToExitFromYourAccount": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to logout?"),
@@ -35,11 +36,21 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Code sent to number"),
         "color": MessageLookupByLibrary.simpleMessage("Color"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "createAds": MessageLookupByLibrary.simpleMessage("Create ads"),
         "createAt": MessageLookupByLibrary.simpleMessage("Create at"),
         "createCategory":
             MessageLookupByLibrary.simpleMessage("Create category"),
+        "createDailyPrice":
+            MessageLookupByLibrary.simpleMessage("Create Daily price"),
+        "createJobs": MessageLookupByLibrary.simpleMessage("Create jobs"),
+        "createLearn": MessageLookupByLibrary.simpleMessage("Create learn"),
+        "createMagazine":
+            MessageLookupByLibrary.simpleMessage("Create magazine"),
+        "createProjects":
+            MessageLookupByLibrary.simpleMessage("Create projects"),
         "createTenders": MessageLookupByLibrary.simpleMessage("Create tenders"),
         "createUser": MessageLookupByLibrary.simpleMessage("Create user"),
+        "dailyPrice": MessageLookupByLibrary.simpleMessage("Daily price"),
         "dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
@@ -66,9 +77,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Incorrect password"),
         "incorrectUsername":
             MessageLookupByLibrary.simpleMessage("Incorrect username"),
+        "jobs": MessageLookupByLibrary.simpleMessage("Jobs"),
+        "learn": MessageLookupByLibrary.simpleMessage("Learn"),
         "link": MessageLookupByLibrary.simpleMessage("Link"),
         "logIn": MessageLookupByLibrary.simpleMessage("Log in"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "magazine": MessageLookupByLibrary.simpleMessage("Magazine"),
         "mistakeYourEmailOrPassword": MessageLookupByLibrary.simpleMessage(
             "Mistake your email or password"),
         "nextStep": MessageLookupByLibrary.simpleMessage("Next step"),
@@ -84,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter four digit pin"),
         "point": MessageLookupByLibrary.simpleMessage("Point"),
         "post": MessageLookupByLibrary.simpleMessage("Products"),
+        "projects": MessageLookupByLibrary.simpleMessage("Projects"),
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "resendCode": MessageLookupByLibrary.simpleMessage("Resend code"),
         "resendCodeIn": MessageLookupByLibrary.simpleMessage("Resend code in"),
@@ -105,9 +120,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "titleTr1": MessageLookupByLibrary.simpleMessage("TitleTr1"),
         "titleTr2": MessageLookupByLibrary.simpleMessage("TitleTr2"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),
+        "update": MessageLookupByLibrary.simpleMessage("Update"),
+        "updateAds": MessageLookupByLibrary.simpleMessage("Update ads"),
         "updateAt": MessageLookupByLibrary.simpleMessage("Update at"),
         "updateCategory":
             MessageLookupByLibrary.simpleMessage("Update category"),
+        "updateDailyPrice":
+            MessageLookupByLibrary.simpleMessage("Update Daily price"),
+        "updateJobs": MessageLookupByLibrary.simpleMessage("Update jobs"),
+        "updateLearn": MessageLookupByLibrary.simpleMessage("Update learn"),
+        "updateMagazine":
+            MessageLookupByLibrary.simpleMessage("Update magazine"),
+        "updateProjects":
+            MessageLookupByLibrary.simpleMessage("Update projects"),
         "updateTenders": MessageLookupByLibrary.simpleMessage("Update tenders"),
         "updateUser": MessageLookupByLibrary.simpleMessage("Update user"),
         "uploadPhoto": MessageLookupByLibrary.simpleMessage("Upload photo"),

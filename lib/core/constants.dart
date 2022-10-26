@@ -131,6 +131,7 @@ enum UseCaseCategory {
   service("service"),
   consultant("consultant"),
   company("company"),
+  learn("learn"),
   user("user"),
   category("category"),
   tutorial("tutorial"),

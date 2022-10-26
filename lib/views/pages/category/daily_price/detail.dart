@@ -1,5 +1,5 @@
 import 'package:dashboard/core/core.dart';
-import 'package:dashboard/views/pages/categories/controller.dart';
+import 'package:dashboard/views/pages/category/daily_price/controller.dart';
 import 'package:dashboard/views/widgets/appbar.dart';
 import 'package:dashboard/views/widgets/form.dart';
 import 'package:dashboard/widget/widgets.dart';
@@ -7,16 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:utilities/utilities.dart';
 
-class CategoryDetailPage extends StatefulWidget {
-  const CategoryDetailPage({this.category, final Key? key}) : super(key: key);
+class DailyPriceDetailPage extends StatefulWidget {
+  const DailyPriceDetailPage({this.category, final Key? key}) : super(key: key);
 
   final CategoryReadDto? category;
 
   @override
-  State<CategoryDetailPage> createState() => _CategoryDetailPageState();
+  State<DailyPriceDetailPage> createState() => _DailyPriceDetailPageState();
 }
 
-class _CategoryDetailPageState extends State<CategoryDetailPage> with CategoriesController {
+class _DailyPriceDetailPageState extends State<DailyPriceDetailPage> with DailyPriceController {
   late List<MediaReadDto> medias;
 
   @override
@@ -66,7 +66,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
   @override
   Widget build(final BuildContext context) => scaffold(
         constraints: const BoxConstraints(minWidth: 1000),
-        appBar: appbar(title: s.createCategory),
+        appBar: appbar(title: widget.category!=null?s.updateDailyPrice:s.createDailyPrice),
         body: Stack(
           children: <Widget>[
             Positioned.fill(
@@ -87,7 +87,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
                       crossAxisAlignment: CrossAxisAlignment.start,
                       isScrollable: true,
                       children: <Widget>[
-                        Text(widget.category != null ? s.updateCategory : s.createCategory).headline6(fontSize: 24, fontWeight: FontWeight.bold).marginSymmetric(vertical: 16, horizontal: 8),
+                        Text(widget.category != null ? s.updateDailyPrice : s.createDailyPrice).headline6(fontSize: 24, fontWeight: FontWeight.bold).marginSymmetric(vertical: 16, horizontal: 8),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                           child: textFormField(
@@ -140,7 +140,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
                             ? SizedBox(
                                 width: screenWidth,
                                 child: button(
-                                  title: s.updateCategory,
+                                  title: s.update,
                                   backgroundColor: context.theme.focusColor,
                                   onTap: () {
                                     validateForm(

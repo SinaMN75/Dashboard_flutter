@@ -1,5 +1,5 @@
 import 'package:dashboard/core/core.dart';
-import 'package:dashboard/views/pages/tenders/controller.dart';
+import 'package:dashboard/views/pages/category/jobs/controller.dart';
 import 'package:dashboard/views/widgets/appbar.dart';
 import 'package:dashboard/views/widgets/form.dart';
 import 'package:dashboard/widget/widgets.dart';
@@ -7,16 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:utilities/utilities.dart';
 
-class TendersDetailPage extends StatefulWidget {
-  const TendersDetailPage({this.category, final Key? key}) : super(key: key);
+class JobsDetailPage extends StatefulWidget {
+  const JobsDetailPage({this.category, final Key? key}) : super(key: key);
 
   final CategoryReadDto? category;
 
   @override
-  State<TendersDetailPage> createState() => _TendersDetailPageState();
+  State<JobsDetailPage> createState() => _JobsDetailPageState();
 }
 
-class _TendersDetailPageState extends State<TendersDetailPage> with TendersController {
+class _JobsDetailPageState extends State<JobsDetailPage> with JobsController {
   late List<MediaReadDto> medias;
 
   @override
@@ -66,7 +66,7 @@ class _TendersDetailPageState extends State<TendersDetailPage> with TendersContr
   @override
   Widget build(final BuildContext context) => scaffold(
         constraints: const BoxConstraints(minWidth: 1000),
-        appBar: appbar(title: s.createTenders),
+        appBar: appbar(title: widget.category!=null?s.updateJobs:s.createJobs),
         body: Stack(
           children: <Widget>[
             Positioned.fill(
@@ -87,7 +87,7 @@ class _TendersDetailPageState extends State<TendersDetailPage> with TendersContr
                       crossAxisAlignment: CrossAxisAlignment.start,
                       isScrollable: true,
                       children: <Widget>[
-                        Text(widget.category != null ? s.updateCategory : s.createCategory).headline6(fontSize: 24, fontWeight: FontWeight.bold).marginSymmetric(vertical: 16, horizontal: 8),
+                        Text(widget.category != null ? s.updateJobs : s.createJobs).headline6(fontSize: 24, fontWeight: FontWeight.bold).marginSymmetric(vertical: 16, horizontal: 8),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                           child: textFormField(
@@ -140,7 +140,7 @@ class _TendersDetailPageState extends State<TendersDetailPage> with TendersContr
                             ? SizedBox(
                                 width: screenWidth,
                                 child: button(
-                                  title: s.updateCategory,
+                                  title: s.update,
                                   backgroundColor: context.theme.focusColor,
                                   onTap: () {
                                     validateForm(

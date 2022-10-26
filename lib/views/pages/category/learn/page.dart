@@ -1,20 +1,20 @@
 import 'package:dashboard/core/core.dart';
-import 'package:dashboard/views/pages/tenders/controller.dart';
-import 'package:dashboard/views/pages/tenders/detail.dart';
+import 'package:dashboard/views/pages/category/learn/controller.dart';
+import 'package:dashboard/views/pages/category/learn/detail.dart';
 import 'package:dashboard/views/widgets/appbar.dart';
 import 'package:dashboard/views/widgets/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:utilities/utilities.dart';
 
-class TendersPage extends StatefulWidget {
-  const TendersPage({final Key? key}) : super(key: key);
+class LearnPage extends StatefulWidget {
+  const LearnPage({final Key? key}) : super(key: key);
 
   @override
-  State<TendersPage> createState() => _TendersPageState();
+  State<LearnPage> createState() => _LearnPageState();
 }
 
-class _TendersPageState extends State<TendersPage> with TendersController {
+class _LearnPageState extends State<LearnPage> with LearnController {
   @override
   void initState() {
     initApp(
@@ -27,7 +27,7 @@ class _TendersPageState extends State<TendersPage> with TendersController {
   @override
   Widget build(final BuildContext context) => Scaffold(
         appBar: appbar(
-          title: s.category,
+          title: s.learn,
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.picture_as_pdf),
@@ -37,7 +37,7 @@ class _TendersPageState extends State<TendersPage> with TendersController {
               icon: const Icon(Icons.add_box_sharp),
               // onPressed: () => push(const CategoryDetailPage()),
               onPressed: () async {
-                final String? res = await Get.to(const TendersDetailPage());
+                final String? res = await Get.to(const LearnDetailPage());
                 if (res == BackResult.ok.title) {
                   initApp(
                     action: () => setState(() {}),

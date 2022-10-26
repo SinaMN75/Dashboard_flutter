@@ -1,20 +1,20 @@
 import 'package:dashboard/core/core.dart';
-import 'package:dashboard/views/pages/categories/controller.dart';
-import 'package:dashboard/views/pages/categories/detail.dart';
+import 'package:dashboard/views/pages/category/magazine/controller.dart';
+import 'package:dashboard/views/pages/category/magazine/detail.dart';
 import 'package:dashboard/views/widgets/appbar.dart';
 import 'package:dashboard/views/widgets/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:utilities/utilities.dart';
 
-class CategoriesPage extends StatefulWidget {
-  const CategoriesPage({final Key? key}) : super(key: key);
+class MagazinePage extends StatefulWidget {
+  const MagazinePage({final Key? key}) : super(key: key);
 
   @override
-  State<CategoriesPage> createState() => _CategoriesPageState();
+  State<MagazinePage> createState() => _MagazinePageState();
 }
 
-class _CategoriesPageState extends State<CategoriesPage> with CategoriesController {
+class _MagazinePageState extends State<MagazinePage> with MagazineController {
   @override
   void initState() {
     initApp(
@@ -27,7 +27,7 @@ class _CategoriesPageState extends State<CategoriesPage> with CategoriesControll
   @override
   Widget build(final BuildContext context) => Scaffold(
         appBar: appbar(
-          title: s.category,
+          title: s.magazine,
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.picture_as_pdf),
@@ -37,7 +37,7 @@ class _CategoriesPageState extends State<CategoriesPage> with CategoriesControll
               icon: const Icon(Icons.add_box_sharp),
               // onPressed: () => push(const CategoryDetailPage()),
               onPressed: () async {
-                final String? res = await Get.to(const CategoryDetailPage());
+                final String? res = await Get.to(const MagazineDetailPage());
                 if (res == BackResult.ok.title) {
                   initApp(
                     action: () => setState(() {}),

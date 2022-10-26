@@ -1,6 +1,6 @@
 import 'package:dashboard/common/save_file_mobile.dart' if (dart.library.html) 'package:dashboard/common/save_file_web.dart' as helper;
 import 'package:dashboard/core/core.dart';
-import 'package:dashboard/views/pages/categories/detail.dart';
+import 'package:dashboard/views/pages/category/ads/detail.dart';
 import 'package:dashboard/views/widgets/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
@@ -8,7 +8,7 @@ import 'package:syncfusion_flutter_datagrid_export/export.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:utilities/utilities.dart';
 
-mixin CategoriesController {
+mixin AdsController {
   final Rx<PageState> state = PageState.initial.obs;
 
   GlobalKey<FormState> globalKey = GlobalKey<FormState>();
@@ -20,6 +20,9 @@ mixin CategoriesController {
   List<String> listOfDeleteImage = <String>[];
   List<PlatformFile> listOfNewFile = <PlatformFile>[];
   List<PlatformFile> listOfNewImage = <PlatformFile>[];
+
+  String useCase = UseCaseCategory.ad.title;
+  String? type;
 
   /// ********** CONTROLLER ***************/
   TextEditingController titleController = TextEditingController();
@@ -34,7 +37,7 @@ mixin CategoriesController {
 
   final GlobalKey<SfDataGridState> gridKey = GlobalKey<SfDataGridState>();
   late DataSource dataSource;
-  List<CategoryReadDto> list = App.categories;
+  List<CategoryReadDto> list = <CategoryReadDto>[];
 
   // List<CategoryReadDto> list = App.categories.where((final CategoryReadDto element) => element.useCase == "category").toList();
   void initApp({required final VoidCallback action}) {
@@ -43,8 +46,11 @@ mixin CategoriesController {
     showLoading();
     categoryDataSource.read(
       onResponse: (final GenericResponse<CategoryReadDto> onResponse) {
-        App.categories = onResponse.resultList ?? <CategoryReadDto>[];
-        list = App.categories;
+        list = onResponse.resultList
+            .getByUseCase(
+              useCase: useCase,
+            )
+            .getByType(type: type);
         dataSource = DataSource(list);
         state.loaded();
         dismissLoading();
@@ -60,7 +66,7 @@ mixin CategoriesController {
 
   // void onEditTap({required final CategoryReadDto dto}) => push(CategoryDetailPage(category: dto));
   void onEditTap({required final CategoryReadDto dto, required final VoidCallback action}) async {
-    final String? res = await Get.to(CategoryDetailPage(category: dto));
+    final String? res = await Get.to(AdsDetailPage(category: dto));
     if (res == BackResult.ok.title) {
       initApp(action: action);
     }
@@ -98,8 +104,8 @@ mixin CategoriesController {
       titleTr1: titleTr1Controller.text,
       titleTr2: titleTr2Controller.text,
       link: linkController.text,
-      useCase: UseCaseCategory.category.title,
-      type: CategoryType.category.title,
+      useCase: useCase,
+      type: type,
       color: stringToHexColor(pickerColor),
     );
     categoryDataSource.create(
@@ -128,8 +134,8 @@ mixin CategoriesController {
       titleTr1: titleTr1Controller.text,
       titleTr2: titleTr2Controller.text,
       link: linkController.text,
-      useCase: UseCaseCategory.category.title,
-      type: CategoryType.category.title,
+      useCase: useCase,
+      type: type,
       color: stringToHexColor(pickerColor),
     );
     categoryDataSource.update(

@@ -1,5 +1,4 @@
 import 'package:dashboard/core/core.dart';
-import 'package:dashboard/views/pages/categories/controller.dart';
 import 'package:dashboard/views/pages/products/controller.dart';
 import 'package:dashboard/views/widgets/appbar.dart';
 import 'package:dashboard/views/widgets/drawer.dart';

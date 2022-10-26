@@ -1,6 +1,6 @@
 import 'package:dashboard/common/save_file_mobile.dart' if (dart.library.html) 'package:dashboard/common/save_file_web.dart' as helper;
 import 'package:dashboard/core/core.dart';
-import 'package:dashboard/views/pages/categories/detail.dart';
+import 'package:dashboard/views/pages/category/categories/detail.dart';
 import 'package:dashboard/views/widgets/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';

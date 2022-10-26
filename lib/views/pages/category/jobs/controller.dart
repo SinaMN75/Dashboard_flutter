@@ -1,6 +1,6 @@
 import 'package:dashboard/common/save_file_mobile.dart' if (dart.library.html) 'package:dashboard/common/save_file_web.dart' as helper;
 import 'package:dashboard/core/core.dart';
-import 'package:dashboard/views/pages/categories/detail.dart';
+import 'package:dashboard/views/pages/category/jobs/detail.dart';
 import 'package:dashboard/views/widgets/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
@@ -8,7 +8,7 @@ import 'package:syncfusion_flutter_datagrid_export/export.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:utilities/utilities.dart';
 
-mixin TendersController {
+mixin JobsController {
   final Rx<PageState> state = PageState.initial.obs;
 
   GlobalKey<FormState> globalKey = GlobalKey<FormState>();
@@ -21,8 +21,8 @@ mixin TendersController {
   List<PlatformFile> listOfNewFile = <PlatformFile>[];
   List<PlatformFile> listOfNewImage = <PlatformFile>[];
 
-  String useCase = UseCaseCategory.tender.title;
-  String type = CategoryType.brand.title;
+  String useCase = UseCaseCategory.company.title;
+  String? type;
 
   /// ********** CONTROLLER ***************/
   TextEditingController titleController = TextEditingController();
@@ -66,7 +66,7 @@ mixin TendersController {
 
   // void onEditTap({required final CategoryReadDto dto}) => push(CategoryDetailPage(category: dto));
   void onEditTap({required final CategoryReadDto dto, required final VoidCallback action}) async {
-    final String? res = await Get.to(CategoryDetailPage(category: dto));
+    final String? res = await Get.to(JobsDetailPage(category: dto));
     if (res == BackResult.ok.title) {
       initApp(action: action);
     }
