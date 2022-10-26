@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:utilities/utilities.dart';
 
 mixin LoginController {
-
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> formKeyLogin = GlobalKey<FormState>();
@@ -13,7 +12,7 @@ mixin LoginController {
   void onNextClick() {
     showLoading();
     userDataSource.loginWithPassword(
-      dto: LoginWithPassword(email: emailController.text, password: passwordController.text ),
+      dto: LoginWithPassword(email: emailController.text, password: passwordController.text),
       onResponse: (final GenericResponse<UserReadDto> onResponse) {
         setData(UtilitiesConstants.token, "Bearer ${onResponse.result?.token}");
         setData(AppConstants.userId, onResponse.result?.id);
@@ -30,10 +29,6 @@ mixin LoginController {
         dismissLoading();
         snackbar(dialogMessage: DialogMessage.warning, title: s.error, description: s.mistakeYourEmailOrPassword);
       },
-
-
-
     );
   }
-
 }

@@ -9,7 +9,7 @@ import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:utilities/utilities.dart';
 
 mixin ProductsController {
-  ProductDataSource productDataSource = ProductDataSource(baseUrl: AppConstants.baseUrl);
+  ProductV2DataSource productDataSource = ProductV2DataSource(baseUrl: AppConstants.baseUrl);
   RxString selectedProductUseCase = ''.obs;
   RxString selectedProductType = ''.obs;
   List<String> listProductUseCase = <String>[];
@@ -30,8 +30,8 @@ mixin ProductsController {
   final TextEditingController longitudeController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final GlobalKey<SfDataGridState> gridKey = GlobalKey<SfDataGridState>();
-  late DataSource dataSource;
-  List<CategoryReadDto> list = App.categories.where((final CategoryReadDto element) => element.useCase == "product").toList();
+  late Rx<DataSource> dataSource = DataSource(<ProductReadDto>[]).obs;
+  RxList<ProductReadDto> list = <ProductReadDto>[].obs;
 
   void onEditTap({required final CategoryReadDto dto}) => push(CategoryDetailPage(category: dto));
 
@@ -79,6 +79,7 @@ mixin ProductsController {
   }
 
   void createProduct() {
+    print("C");
     productDataSource.create(
       dto: ProductCreateUpdateDto(
         title: titleController.text,
@@ -95,32 +96,53 @@ mixin ProductsController {
         price: double.parse(priceController.text),
         latitude: double.parse(latitudeController.text),
         longitude: double.parse(longitudeController.text),
+        useCase: selectedProductUseCase.value,
+        type: selectedProductType.value,
       ),
       onResponse: (final GenericResponse<ProductReadDto> response) {
-        
+        back();
       },
       onError: (final GenericResponse<dynamic> response) {},
+    );
+  }
+
+  void getProducts({required final VoidCallback action}) {
+    productDataSource.filter(
+      filter: ProductFilterDto(),
+      onResponse: (final GenericResponse<ProductReadDto> response) {
+        list.value = response.resultList!;
+        action();
+      },
+      onError: (final _) {},
     );
   }
 }
 
 class DataSource extends DataGridSource {
-  DataSource(final List<CategoryReadDto> list) {
+  DataSource(final List<ProductReadDto> list) {
     dataGridRow = list
         .mapIndexed<DataGridRow>(
-          (final int index, final CategoryReadDto e) => DataGridRow(
+          (final int index, final ProductReadDto e) => DataGridRow(
             cells: <DataGridCell>[
               DataGridCell<int>(columnName: index.toString(), value: index),
-              DataGridCell<CategoryReadDto>(columnName: e.id ?? "", value: e),
-              DataGridCell<CategoryReadDto>(columnName: e.title ?? "", value: e),
-              DataGridCell<CategoryReadDto>(columnName: e.titleTr1 ?? "", value: e),
-              DataGridCell<CategoryReadDto>(columnName: e.titleTr2 ?? "", value: e),
-              DataGridCell<CategoryReadDto>(columnName: e.subtitle ?? "", value: e),
-              DataGridCell<CategoryReadDto>(columnName: e.color ?? "", value: e),
-              DataGridCell<CategoryReadDto>(columnName: e.link ?? "", value: e),
-              DataGridCell<CategoryReadDto>(columnName: e.parent?.title ?? "", value: e),
-              DataGridCell<CategoryReadDto>(columnName: e.useCase ?? "", value: e),
-              DataGridCell<CategoryReadDto>(columnName: e.type ?? "", value: e),
+              DataGridCell<ProductReadDto>(columnName: e.id ?? "", value: e),
+              DataGridCell<ProductReadDto>(columnName: e.title ?? "", value: e),
+              DataGridCell<ProductReadDto>(columnName: e.subtitle ?? "", value: e),
+              DataGridCell<ProductReadDto>(columnName: e.description ?? "", value: e),
+              DataGridCell<ProductReadDto>(columnName: e.details ?? "", value: e),
+              DataGridCell<ProductReadDto>(columnName: e.address ?? "", value: e),
+              DataGridCell<ProductReadDto>(columnName: e.author ?? "", value: e),
+              DataGridCell<ProductReadDto>(columnName: e.phoneNumber ?? "", value: e),
+              DataGridCell<ProductReadDto>(columnName: e.link ?? "", value: e),
+              DataGridCell<ProductReadDto>(columnName: e.email ?? "", value: e),
+              DataGridCell<ProductReadDto>(columnName: e.state ?? "", value: e),
+              DataGridCell<ProductReadDto>(columnName: e.stateTr1 ?? "", value: e),
+              DataGridCell<ProductReadDto>(columnName: e.stateTr2 ?? "", value: e),
+              DataGridCell<ProductReadDto>(columnName: e.latitude.toString(), value: e),
+              DataGridCell<ProductReadDto>(columnName: e.longitude.toString(), value: e),
+              DataGridCell<ProductReadDto>(columnName: e.price.toString(), value: e),
+              DataGridCell<ProductReadDto>(columnName: e.useCase ?? "", value: e),
+              DataGridCell<ProductReadDto>(columnName: e.type ?? "", value: e),
             ],
           ),
         )
