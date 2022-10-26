@@ -540,6 +540,36 @@ class S {
     );
   }
 
+  /// `Create tenders`
+  String get createTenders {
+    return Intl.message(
+      'Create tenders',
+      name: 'createTenders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update tenders`
+  String get updateTenders {
+    return Intl.message(
+      'Update tenders',
+      name: 'updateTenders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tenders`
+  String get tenders {
+    return Intl.message(
+      'Tenders',
+      name: 'tenders',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cancel`
   String get cancel {
     return Intl.message(

@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "createAt": MessageLookupByLibrary.simpleMessage("Create at"),
         "createCategory":
             MessageLookupByLibrary.simpleMessage("Create category"),
+        "createTenders": MessageLookupByLibrary.simpleMessage("Create tenders"),
         "createUser": MessageLookupByLibrary.simpleMessage("Create user"),
         "dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
@@ -95,6 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectImage": MessageLookupByLibrary.simpleMessage("Select image"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "subtitle": MessageLookupByLibrary.simpleMessage("Subtitle"),
+        "tenders": MessageLookupByLibrary.simpleMessage("Tenders"),
         "thisFieldIsRequired":
             MessageLookupByLibrary.simpleMessage("This field is required"),
         "thisFieldRequired":
@@ -106,6 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "updateAt": MessageLookupByLibrary.simpleMessage("Update at"),
         "updateCategory":
             MessageLookupByLibrary.simpleMessage("Update category"),
+        "updateTenders": MessageLookupByLibrary.simpleMessage("Update tenders"),
         "updateUser": MessageLookupByLibrary.simpleMessage("Update user"),
         "uploadPhoto": MessageLookupByLibrary.simpleMessage("Upload photo"),
         "usecase": MessageLookupByLibrary.simpleMessage("UseCase"),
