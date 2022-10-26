@@ -35,13 +35,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "createAt": MessageLookupByLibrary.simpleMessage("Create at"),
         "createCategory":
             MessageLookupByLibrary.simpleMessage("Create category"),
+        "createUser": MessageLookupByLibrary.simpleMessage("Create user"),
         "dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailIsIncorrect":
             MessageLookupByLibrary.simpleMessage("Email is incorrect"),
         "enterVerificationCode":
             MessageLookupByLibrary.simpleMessage("Enter verification code"),
+        "enterYourEmailAndPassword": MessageLookupByLibrary.simpleMessage(
+            "Enter your email and password"),
         "enterYourPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Enter your phone number"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
@@ -59,11 +63,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "incorrectUsername":
             MessageLookupByLibrary.simpleMessage("Incorrect username"),
         "link": MessageLookupByLibrary.simpleMessage("Link"),
+        "logIn": MessageLookupByLibrary.simpleMessage("Log in"),
+        "mistakeYourEmailOrPassword": MessageLookupByLibrary.simpleMessage(
+            "Mistake your email or password"),
         "nextStep": MessageLookupByLibrary.simpleMessage("Next step"),
         "numberIsIncorrect":
             MessageLookupByLibrary.simpleMessage("Number is incorrect"),
         "order": MessageLookupByLibrary.simpleMessage("Order"),
         "parent": MessageLookupByLibrary.simpleMessage("Parent"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
         "pickColor": MessageLookupByLibrary.simpleMessage("Pick a color!"),
         "picture": MessageLookupByLibrary.simpleMessage("picture"),
@@ -94,6 +102,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "updateAt": MessageLookupByLibrary.simpleMessage("Update at"),
         "updateCategory":
             MessageLookupByLibrary.simpleMessage("Update category"),
+        "updateUser": MessageLookupByLibrary.simpleMessage("Update user"),
         "uploadPhoto": MessageLookupByLibrary.simpleMessage("Upload photo"),
         "usecase": MessageLookupByLibrary.simpleMessage("UseCase"),
         "userName": MessageLookupByLibrary.simpleMessage("User name"),

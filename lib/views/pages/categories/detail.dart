@@ -17,8 +17,11 @@ class CategoryDetailPage extends StatefulWidget {
 }
 
 class _CategoryDetailPageState extends State<CategoryDetailPage> with CategoriesController {
+  late List<MediaReadDto> medias;
+
   @override
   void initState() {
+    medias = widget.category?.media! ?? <MediaReadDto>[];
     // addListCategoryUseCase();
     // addListCategoryType();
     // addListMediaUseCase();
@@ -84,8 +87,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
                       crossAxisAlignment: CrossAxisAlignment.start,
                       isScrollable: true,
                       children: <Widget>[
-
-                        Text(widget.category!=null?s.updateCategory:s.createCategory).headline6(fontSize: 24,fontWeight: FontWeight.bold).marginSymmetric(vertical: 16,horizontal: 8),
+                        Text(widget.category != null ? s.updateCategory : s.createCategory).headline6(fontSize: 24, fontWeight: FontWeight.bold).marginSymmetric(vertical: 16, horizontal: 8),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                           child: textFormField(
@@ -197,8 +199,8 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
               () => showFilePickerWeb(
                 action: (final PlatformFile file) {
                   listOfNewImage.add(file);
-                  if (widget.category?.media.getByUseCase(useCase: UseCaseMedia.image.title).isNotEmpty ?? false) {
-                    listOfDeleteFile.add(widget.category?.media.getByUseCase(useCase: UseCaseMedia.image.title).first.id ?? '');
+                  if (medias.getByUseCase(useCase: UseCaseMedia.image.title).isNotEmpty) {
+                    listOfDeleteFile.add(medias.getByUseCase(useCase: UseCaseMedia.image.title).first.id);
                   }
                   setState(() {});
                 },
@@ -207,8 +209,8 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
             Container(
               child: listOfNewImage.isNotEmpty
                   ? Container()
-                  : widget.category?.media.getByUseCase(useCase: UseCaseMedia.image.title).isNotEmpty ?? false
-                      ? !listOfDeleteFile.contains(widget.category?.media.getByUseCase(useCase: UseCaseMedia.image.title).first.id ?? '')
+                  : medias.getByUseCase(useCase: UseCaseMedia.image.title).isNotEmpty
+                      ? !listOfDeleteFile.contains(medias.getByUseCase(useCase: UseCaseMedia.image.title).first.id)
                           ? Stack(
                               alignment: Alignment.topRight,
                               children: <Widget>[
@@ -218,13 +220,13 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
                                   ),
-                                  child: image(widget.category?.media.getByUseCase(useCase: UseCaseMedia.image.title).first.url ?? '', width: 45, height: 45, fit: BoxFit.scaleDown),
+                                  child: image(medias.getByUseCase(useCase: UseCaseMedia.image.title).first.url, width: 45, height: 45, fit: BoxFit.scaleDown),
                                 ),
                                 image(AppIcons.close,
                                     width: 20,
                                     onTap: () => setState(() {
-                                          if (widget.category?.media.getByUseCase(useCase: UseCaseMedia.image.title).isNotEmpty ?? false) {
-                                            listOfDeleteFile.add(widget.category?.media.getByUseCase(useCase: UseCaseMedia.image.title).first.id ?? '');
+                                          if (widget.category?.media?.getByUseCase(useCase: UseCaseMedia.image.title).isNotEmpty ?? false) {
+                                            listOfDeleteFile.add(widget.category?.media?.getByUseCase(useCase: UseCaseMedia.image.title).first.id ?? '');
                                           }
                                         })),
                               ],
@@ -279,8 +281,8 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
                 fileType: FileType.any,
                 action: (final PlatformFile file) {
                   listOfNewFile.add(file);
-                  if (widget.category?.media.getByUseCase(useCase: UseCaseMedia.all.title).isNotEmpty ?? false) {
-                    listOfDeleteFile.add(widget.category?.media.getByUseCase(useCase: UseCaseMedia.all.title).first.id ?? '');
+                  if (widget.category?.media?.getByUseCase(useCase: UseCaseMedia.all.title).isNotEmpty ?? false) {
+                    listOfDeleteFile.add(widget.category?.media?.getByUseCase(useCase: UseCaseMedia.all.title).first.id ?? '');
                   }
                   setState(() {});
                 },
@@ -289,15 +291,15 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
             Container(
               child: listOfNewFile.isNotEmpty
                   ? Container()
-                  : widget.category?.media.getByUseCase(useCase: UseCaseMedia.all.title).isNotEmpty ?? false
-                      ? !listOfDeleteFile.contains(widget.category?.media.getByUseCase(useCase: UseCaseMedia.all.title).first.id ?? '')
+                  : widget.category?.media?.getByUseCase(useCase: UseCaseMedia.all.title).isNotEmpty ?? false
+                      ? !listOfDeleteFile.contains(widget.category?.media?.getByUseCase(useCase: UseCaseMedia.all.title).first.id ?? '')
                           ? Container(
                               height: 50,
                               width: 50,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                               ),
-                              // child: image(widget.category?.media.getByUseCase(useCase: UseCaseMedia.all.title).first.url ?? ''),
+                              // child: image(widget.category?.media?.getByUseCase(useCase: UseCaseMedia.all.title).first.url ?? ''),
                               child: Stack(
                                 alignment: Alignment.topRight,
                                 children: <Widget>[
@@ -312,8 +314,8 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
                                   image(AppIcons.close,
                                       width: 20,
                                       onTap: () => setState(() {
-                                            if (widget.category?.media.getByUseCase(useCase: UseCaseMedia.all.title).isNotEmpty ?? false) {
-                                              listOfDeleteFile.add(widget.category?.media.getByUseCase(useCase: UseCaseMedia.all.title).first.id ?? '');
+                                            if (widget.category?.media?.getByUseCase(useCase: UseCaseMedia.all.title).isNotEmpty ?? false) {
+                                              listOfDeleteFile.add(widget.category?.media?.getByUseCase(useCase: UseCaseMedia.all.title).first.id ?? '');
                                             }
                                           })),
                                 ],
@@ -363,7 +365,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> with Categories
           Text(mediaList[index].useCase),
           button(
               onTap: () {
-                listOfDeleteFile.add(mediaList[index].id );
+                listOfDeleteFile.add(mediaList[index].id);
                 mediaList.removeAt(index);
                 setState(() {});
               },

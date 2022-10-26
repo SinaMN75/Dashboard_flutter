@@ -570,6 +570,56 @@ class S {
     );
   }
 
+  /// `Enter your email and password`
+  String get enterYourEmailAndPassword {
+    return Intl.message(
+      'Enter your email and password',
+      name: 'enterYourEmailAndPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log in`
+  String get logIn {
+    return Intl.message(
+      'Log in',
+      name: 'logIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mistake your email or password`
+  String get mistakeYourEmailOrPassword {
+    return Intl.message(
+      'Mistake your email or password',
+      name: 'mistakeYourEmailOrPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Create at`
   String get createAt {
     return Intl.message(
@@ -605,6 +655,26 @@ class S {
     return Intl.message(
       'Select file',
       name: 'selectFile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create user`
+  String get createUser {
+    return Intl.message(
+      'Create user',
+      name: 'createUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update user`
+  String get updateUser {
+    return Intl.message(
+      'Update user',
+      name: 'updateUser',
       desc: '',
       args: [],
     );

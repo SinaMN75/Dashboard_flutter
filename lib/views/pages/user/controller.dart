@@ -18,9 +18,9 @@ mixin UserController {
   FormDataSource formDataSource = FormDataSource(baseUrl: AppConstants.baseUrl);
   List<FormReadDto> forms = <FormReadDto>[];
   List<String> listOfDeleteFile = <String>[];
-  List<PlatformFile> listOfNewFiles = <PlatformFile>[];
-  List<String> listOfNewUseCase = <String>[];
-  List<UseCaseMedia> useCaseMedia2 = <UseCaseMedia>[];
+  List<String> listOfDeleteImage = <String>[];
+  List<PlatformFile> listOfNewFile = <PlatformFile>[];
+  List<PlatformFile> listOfNewImage = <PlatformFile>[];
 
   /// ********** CONTROLLER ***************/
   TextEditingController userNameController = TextEditingController();
@@ -35,7 +35,6 @@ mixin UserController {
 
   Color pickerColor = Colors.blue;
 
-  List<String> listMediaUseCase = <String>[];
   final GlobalKey<SfDataGridState> gridKey = GlobalKey<SfDataGridState>();
   late UserSource dataSource;
   List<UserReadDto> list = <UserReadDto>[];
@@ -59,6 +58,13 @@ mixin UserController {
       },
     );
   }
+
+  // void onEditTap({required final UserReadDto dto, required final VoidCallback action}) async {
+  //   final String? res = await Get.to(UserDetailPage(userReadDto: dto));
+  //   if (res == BackResult.ok.title) {
+  //     initApp(action: action);
+  //   }
+  // }
 
   void onEditTap({required final UserReadDto dto, required final VoidCallback action}) async {
     final String? res = await Get.to(UserDetailPage(userReadDto: dto));
@@ -90,14 +96,6 @@ mixin UserController {
     document.dispose();
   }
 
-
-  void addListMediaUseCase() {
-    const List<UseCaseMedia> listUsecaseUser = UseCaseMedia.values;
-    listUsecaseUser.forEach((final UseCaseMedia element) {
-      listMediaUseCase.add(element.title);
-    });
-  }
-
   void confirm({required final VoidCallback action}) {
     final UserCreateUpdateDto filter = UserCreateUpdateDto(
       userName: userNameController.text,
@@ -112,8 +110,13 @@ mixin UserController {
     userDataSource.create(
       dto: filter,
       onResponse: (final GenericResponse<UserReadDto> response) async {
-        if (listOfNewFiles.isNotEmpty) {
-          await addNewFiles(response.result?.id ?? '', action: action);
+        if (listOfNewFile.isNotEmpty || listOfNewImage.isNotEmpty) {
+          await addNewFiles(
+            response.result?.id ?? '',
+            action: () async {
+              await addNewImage(response.result?.id ?? '', action: action);
+            },
+          );
         } else {
           action();
         }
@@ -140,7 +143,12 @@ mixin UserController {
         await deleteOldFiles(
           response.result?.id ?? '',
           action: () async {
-            await addNewFiles(response.result?.id ?? '', action: action);
+            await addNewFiles(
+              response.result?.id ?? '',
+              action: () async {
+                await addNewImage(response.result?.id ?? '', action: action);
+              },
+            );
           },
         );
       },
@@ -168,14 +176,34 @@ mixin UserController {
     }
   }
 
-  Future<void> addNewFiles(final String catId, {required final VoidCallback action}) async {
-    if (listOfNewFiles.isNotEmpty) {
-      for (int i = 0; i < listOfNewFiles.length; i++) {
+  Future<void> addNewFiles(final String userId, {required final VoidCallback action}) async {
+    if (listOfNewFile.isNotEmpty) {
+      for (int i = 0; i < listOfNewFile.length; i++) {
         await mediaDataSource.createWebV2(
-          useCase: listOfNewUseCase[i],
-          userId: catId,
+          useCase: UseCaseMedia.all.title,
+          userId: userId,
           files: <PlatformFile>[
-            ...<PlatformFile>[listOfNewFiles[i]],
+            ...<PlatformFile>[listOfNewFile[i]],
+          ],
+          action: action,
+          error: (final int statusCode) {
+            action();
+          },
+        );
+      }
+    } else {
+      action();
+    }
+  }
+
+  Future<void> addNewImage(final String userId, {required final VoidCallback action}) async {
+    if (listOfNewImage.isNotEmpty) {
+      for (int i = 0; i < listOfNewImage.length; i++) {
+        await mediaDataSource.createWebV2(
+          useCase: UseCaseMedia.image.title,
+          userId: userId,
+          files: <PlatformFile>[
+            ...<PlatformFile>[listOfNewImage[i]],
           ],
           action: action,
           error: (final int statusCode) {
@@ -210,7 +238,6 @@ class UserSource extends DataGridSource {
           (final int index, final UserReadDto e) => DataGridRow(
             cells: <DataGridCell>[
               DataGridCell<int>(columnName: index.toString(), value: index),
-              DataGridCell<UserReadDto>(columnName: e.id ?? "", value: e),
               DataGridCell<UserReadDto>(columnName: e.userName ?? "", value: e),
               DataGridCell<UserReadDto>(columnName: e.phoneNumber ?? "", value: e),
               DataGridCell<UserReadDto>(columnName: e.appEmail ?? "", value: e),

@@ -1,5 +1,6 @@
 import 'package:dashboard/core/core.dart';
 import 'package:dashboard/views/pages/login/login_controller.dart';
+import 'package:dashboard/views/widgets/form.dart';
 import 'package:dashboard/widget/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -48,22 +49,29 @@ class _LoginPageState extends State<LoginPage> with LoginController {
                     width: Get.width,
                     isScrollable: true,
                     children: <Widget>[
-                      Text(s.enterYourPhoneNumber).headline3(color: context.theme.primaryColorDark),
                       const SizedBox(height: 14),
+                      Text(s.enterYourEmailAndPassword).headline1(fontSize: 24),
                       const SizedBox(height: 75),
-                      TextFormField(
-                        controller: phoneController,
-                        decoration: const InputDecoration(
-                          fillColor: Colors.red,
-                          border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black87, width: 2)),
-                          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black87, width: 2)),
-                          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black87, width: 2)),
-                        ),
+                      textFormField(
+                        label: s.email,
+                        onChanged: (final String value) {},
+                        controller: emailController,
                       ),
+                      const SizedBox(height: 14),
+                       textFormField(
+                        label: s.password,
+                        onChanged: (final String value) {},
+                        controller: passwordController,
+                      ),
+
+
+
+                    
+
                       const SizedBox(height: 75),
                       button(
                         width: Get.width,
-                        title: s.nextStep,
+                        title: s.confirm,
                         textStyle: context.textTheme.headline5,
                         onTap: () => validateForm(key: formKeyLogin, action: onNextClick),
                       ),
