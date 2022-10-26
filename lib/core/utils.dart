@@ -100,7 +100,27 @@ void snackbar({
         margin: EdgeInsets.only(right: isPersianLang() ? 8 : 0, left: isPersianLang() ? 0 : 8),
       ),
     );
-
+void showYesCancelDialog({
+  required final String title,
+  required final String description,
+  required final VoidCallback onYesButtonTap,
+  final VoidCallback? onCancelButtonTap,
+  final String? yesButtonTitle,
+}) =>
+    showDialog(
+      context: context,
+      builder: (final BuildContext context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        title: Text(title, style: context.textTheme.headline4),
+        content: Text(description, style: context.textTheme.bodyText1),
+        actionsAlignment: MainAxisAlignment.center,
+        actions: <Widget>[
+          button(onTap: onCancelButtonTap ?? back, title: s.cancel, width: 80),
+          const SizedBox(width: 12),
+          button(onTap: onYesButtonTap, title: yesButtonTitle ?? s.yes, width: 80),
+        ],
+      ),
+    );
 FormFieldValidator<String> validatePassword() => (final String? value) {
       if (value!.isEmpty)
         return s.thisFieldIsRequired;

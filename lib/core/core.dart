@@ -1,4 +1,5 @@
 import 'package:dashboard/generated/l10n.dart';
+import 'package:dashboard/widget/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';

@@ -23,7 +23,10 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appEmail": MessageLookupByLibrary.simpleMessage("App email"),
+        "areYouSureToExitFromYourAccount": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to logout?"),
         "bio": MessageLookupByLibrary.simpleMessage("bio"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
         "changePhoneNumber":
             MessageLookupByLibrary.simpleMessage("Change phone number"),
@@ -64,6 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Incorrect username"),
         "link": MessageLookupByLibrary.simpleMessage("Link"),
         "logIn": MessageLookupByLibrary.simpleMessage("Log in"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "mistakeYourEmailOrPassword": MessageLookupByLibrary.simpleMessage(
             "Mistake your email or password"),
         "nextStep": MessageLookupByLibrary.simpleMessage("Next step"),
@@ -108,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "userName": MessageLookupByLibrary.simpleMessage("User name"),
         "users": MessageLookupByLibrary.simpleMessage("Users"),
         "wallet": MessageLookupByLibrary.simpleMessage("Wallet"),
-        "warning": MessageLookupByLibrary.simpleMessage("Warning")
+        "warning": MessageLookupByLibrary.simpleMessage("Warning"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

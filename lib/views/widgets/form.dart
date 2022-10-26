@@ -6,6 +6,7 @@ Widget textFormField({
   final double? width,
   final ValueChanged<String>? onChanged,
   final TextEditingController? controller,
+  final TextInputType? keyboardType,
 }) =>
     SizedBox(
       width: width,
@@ -17,6 +18,7 @@ Widget textFormField({
           TextFormField(
             onChanged: onChanged,
             controller: controller,
+            keyboardType: keyboardType,
             decoration:  InputDecoration(
               border: OutlineInputBorder(borderSide: BorderSide(color: context.theme.disabledColor.withOpacity(0.6), width: 2)),
               enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: context.theme.disabledColor.withOpacity(0.6), width: 2)),

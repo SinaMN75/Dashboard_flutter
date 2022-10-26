@@ -60,13 +60,10 @@ class _LoginPageState extends State<LoginPage> with LoginController {
                       const SizedBox(height: 14),
                        textFormField(
                         label: s.password,
+                        keyboardType: TextInputType.visiblePassword,
                         onChanged: (final String value) {},
                         controller: passwordController,
                       ),
-
-
-
-                    
 
                       const SizedBox(height: 75),
                       button(

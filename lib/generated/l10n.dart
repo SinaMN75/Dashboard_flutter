@@ -540,6 +540,46 @@ class S {
     );
   }
 
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to logout?`
+  String get areYouSureToExitFromYourAccount {
+    return Intl.message(
+      'Are you sure you want to logout?',
+      name: 'areYouSureToExitFromYourAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Enter your phone number`
   String get enterYourPhoneNumber {
     return Intl.message(
