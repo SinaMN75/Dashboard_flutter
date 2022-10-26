@@ -141,62 +141,16 @@ class AppImages {
 
 class AppIcons {
   static const String _base = "lib/assets/icons";
-  static const String back = "$_base/back.svg";
-  static const String success = "$_base/success.svg";
-  static const String warning = "$_base/warning.svg";
-  static const String car = "$_base/car.svg";
   static const String close = "$_base/close.svg";
+  static const String email = "$_base/email.svg";
+  static const String expansionArrow = "$_base/expansion_arrow.svg";
   static const String image = "$_base/image.svg";
   static const String singlePost = "$_base/single_post.svg";
-  static const String email = "$_base/email.svg";
-  static const String copy = "$_base/copy.svg";
-  static const String expansionArrow = "$_base/expansion_arrow.svg";
-  static const String menu = "$_base/menu.svg";
-  static const String aboutUs = "$_base/about_us.svg";
-  static const String faq = "$_base/faq.svg";
-  static const String home = "$_base/home.svg";
-  static const String info = "$_base/info.svg";
-  static const String share = "$_base/share.svg";
-  static const String support = "$_base/support.svg";
-  static const String sort = "$_base/sort.svg";
-  static const String linkedIn = "$_base/linked_in.svg";
-  static const String instagram = "$_base/instagram.svg";
   static const String whatsapp = "$_base/whatsapp.svg";
-  static const String telegram = "$_base/telegram.svg";
-  static const String user = "$_base/user.svg";
-  static const String wallet = "$_base/wallet.svg";
-  static const String reminders = "$_base/reminders.svg";
-  static const String damage = "$_base/damage.svg";
-  static const String numberPlates = "$_base/number_plates.svg";
-  static const String insurances = "$_base/insurances.svg";
-  static const String transactions = "$_base/transactions.svg";
-  static const String logout = "$_base/logout.svg";
-  static const String avatar = "$_base/avatar.png";
-  static const String edit = "$_base/edit.svg";
-  static const String more = "$_base/more.svg";
-  static const String icon1 = "$_base/icon1.svg";
-  static const String icon2 = "$_base/icon2.png";
-  static const String car2 = "$_base/car2.svg";
-  static const String description = "$_base/description.svg";
-  static const String calendar = "$_base/calendar.svg";
-  static const String edit2 = "$_base/edit2.svg";
-  static const String delete = "$_base/delete.svg";
-  static const String bag = "$_base/bag.svg";
-  static const String plate = "$_base/plate.png";
-  static const String own = "$_base/own.svg";
-  static const String listEmptyReminders = "$_base/list_empty_reminders.svg";
-  static const String listEmptyPlate = "$_base/list_empty_plate.svg";
-  static const String listEmptyInsurances = "$_base/list_empty_insurances.svg";
-  static const String listEmptyDamage = "$_base/list_empty_damage.svg";
-  static const String location = "$_base/location.svg";
-  static const String time = "$_base/time.svg";
-  static const String onboardingPage1 = "$_base/onboarding_page1.svg";
-  static const String onboardingPage2 = "$_base/onboarding_page2.svg";
-  static const String onboardingPage3 = "$_base/onboarding_page3.svg";
-  static const String tik = "$_base/tik.svg";
-  static const String ticket = "$_base/ticket.svg";
-  static const String add = "$_base/add.svg";
-  static const String search = "$_base/search.svg";
-  static const String copyLink = "$_base/copy_link.svg";
-  static const String inviteFriend = "$_base/invite_friend.svg";
+  static const String success = "$_base/success.svg";
+  static const String warning = "$_base/warning.svg";
+  static const String info = "$_base/info.svg";
+
+
+
 }
