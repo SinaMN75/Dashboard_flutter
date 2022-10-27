@@ -38,7 +38,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> with ProductsCont
             textFormField(
               label: s.subtitle,
               onChanged: (final String value) {},
-              controller: titleController,
+              controller: subTitleController,
             ).marginSymmetric(vertical: 10),
             textFormField(
               label: "description",
@@ -131,7 +131,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> with ProductsCont
                       )
                       .toList(),
                 )),
-            button(onTap: (){},title: "Create",maxWidth: true).marginSymmetric(vertical: 30),
+            button(onTap: createProduct,title: "Create",maxWidth: true).marginSymmetric(vertical: 30),
           ],
         ).marginSymmetric(horizontal: 20),
       );
