@@ -51,6 +51,7 @@ Color hexStringToColor(final String hexString) {
   buffer.write(hexString.replaceFirst('#', ''));
   return Color(int.parse(buffer.toString(), radix: 16));
 }
+
 String stringToHexColor(final Color color) => '#${color.value.toRadixString(16)}';
 
 // void showLoading() {
@@ -100,6 +101,7 @@ void snackbar({
         margin: EdgeInsets.only(right: isPersianLang() ? 8 : 0, left: isPersianLang() ? 0 : 8),
       ),
     );
+
 void showYesCancelDialog({
   required final String title,
   required final String description,
@@ -121,6 +123,7 @@ void showYesCancelDialog({
         ],
       ),
     );
+
 FormFieldValidator<String> validatePassword() => (final String? value) {
       if (value!.isEmpty)
         return s.thisFieldIsRequired;
@@ -199,3 +202,12 @@ void appBottomSheet({required final Widget child, final double height = 300}) =>
     );
 
 bool isRTL() => Directionality.of(context).toString().contains(TextDirection.RTL.value.toLowerCase());
+
+// ignore: prefer_expression_function_bodies
+Widget drawerItem({required final String title, required final GestureTapCallback onTap}) {
+  // return Container();
+  return ListTile(
+    title: iconTextHorizontal(leading: image(AppIcons.arrowRight, width: 8, height: 8).marginSymmetric(horizontal: 8), trailing: Text(title).subtitle1()),
+    onTap: onTap,
+  );
+}

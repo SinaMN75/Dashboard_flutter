@@ -22,7 +22,6 @@ mixin AdsController {
   List<PlatformFile> listOfNewImage = <PlatformFile>[];
 
   String useCase = UseCaseCategory.ad.title;
-  String? type;
 
   /// ********** CONTROLLER ***************/
   TextEditingController titleController = TextEditingController();
@@ -49,8 +48,7 @@ mixin AdsController {
         list = onResponse.resultList
             .getByUseCase(
               useCase: useCase,
-            )
-            .getByType(type: type);
+            );
         dataSource = DataSource(list);
         state.loaded();
         dismissLoading();
@@ -105,7 +103,6 @@ mixin AdsController {
       titleTr2: titleTr2Controller.text,
       link: linkController.text,
       useCase: useCase,
-      type: type,
       color: stringToHexColor(pickerColor),
     );
     categoryDataSource.create(
@@ -135,7 +132,6 @@ mixin AdsController {
       titleTr2: titleTr2Controller.text,
       link: linkController.text,
       useCase: useCase,
-      type: type,
       color: stringToHexColor(pickerColor),
     );
     categoryDataSource.update(
