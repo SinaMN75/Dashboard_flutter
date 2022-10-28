@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:utilities/utilities.dart';
 
 Widget textFormField({
@@ -7,6 +8,7 @@ Widget textFormField({
   final ValueChanged<String>? onChanged,
   final TextEditingController? controller,
   final TextInputType? keyboardType,
+  final List<TextInputFormatter>? textFormat,
 }) =>
     SizedBox(
       width: width,
@@ -16,10 +18,11 @@ Widget textFormField({
           Text(label).bodyText1(),
           const SizedBox(height: 8),
           TextFormField(
+            inputFormatters: textFormat,
             onChanged: onChanged,
             controller: controller,
             keyboardType: keyboardType,
-            decoration:  InputDecoration(
+            decoration: InputDecoration(
               border: OutlineInputBorder(borderSide: BorderSide(color: context.theme.disabledColor.withOpacity(0.6), width: 2)),
               enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: context.theme.disabledColor.withOpacity(0.6), width: 2)),
               focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: context.theme.disabledColor.withOpacity(0.6), width: 2)),

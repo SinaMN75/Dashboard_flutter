@@ -8,34 +8,52 @@ import 'package:syncfusion_flutter_datagrid_export/export.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:utilities/utilities.dart';
 
-mixin ProductsController {
+mixin AdsProductController {
   ProductV2DataSource productDataSource = ProductV2DataSource(baseUrl: AppConstants.baseUrl);
-  RxString selectedProductUseCase = ''.obs;
-  RxString selectedProductType = ''.obs;
+  CategoryDataSource categoryDataSource = CategoryDataSource(baseUrl: AppConstants.baseUrl);
+  MediaDataSource mediaDataSource = MediaDataSource(baseUrl: AppConstants.baseUrl);
+
   List<String> listProductUseCase = <String>[];
   List<String> listProductType = <String>[];
   final TextEditingController titleController = TextEditingController();
   final TextEditingController subTitleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
-  final TextEditingController detailsController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
-  final TextEditingController authorController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
-  final TextEditingController linkController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController stateController = TextEditingController();
-  final TextEditingController stateTr1Controller = TextEditingController();
-  final TextEditingController stateTr2Controller = TextEditingController();
   final TextEditingController latitudeController = TextEditingController();
   final TextEditingController longitudeController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final GlobalKey<SfDataGridState> gridKey = GlobalKey<SfDataGridState>();
   late Rx<DataSource> dataSource = DataSource(<ProductReadDto>[]).obs;
   RxList<ProductReadDto> list = <ProductReadDto>[].obs;
+  RxList<CategoryReadDto> categorise = <CategoryReadDto>[].obs;
+  Rx<CategoryReadDto> selectedCategory = CategoryReadDto().obs;
+  List<PlatformFile> listOfNewImage = <PlatformFile>[];
+  List<String> listOfDeleteFile = <String>[];
 
-  void onEditTap({required final CategoryReadDto dto}) => push(CategoryDetailPage(category: dto));
+  void getCategorise() {
+    categoryDataSource.read(
+      onResponse: (final GenericResponse<CategoryReadDto> response) {
+        categorise.value = response.resultList!.getByUseCase(useCase: UseCaseCategory.ad.title);
+        selectedCategory.value = categorise.first;
+      },
+      onError: (final GenericResponse<dynamic> onError) {
+        snackBarError(onError.message);
+      },
+    );
+  }
 
-  void onDeleteTap({required final CategoryReadDto dto}) => push(CategoryDetailPage(category: dto));
+  void deleteProduct({required final String id, required final VoidCallback action}) {
+    productDataSource.delete(
+      id: id,
+      onResponse: (final _) => action(),
+      onError: (final GenericResponse<dynamic> response) {
+        print(response.message);
+      },
+    );
+  }
 
   Future<void> exportDataGridToPdf() async {
     final PdfDocument document = gridKey.currentState!.exportToPdfDocument(
@@ -63,44 +81,76 @@ mixin ProductsController {
     document.dispose();
   }
 
-  void addListProductUseCase() {
-    const List<UseCaseProduct> tmpUseCases = UseCaseProduct.values;
-    const List<TenderType> tmpTypes = TenderType.values;
-
-    tmpUseCases.forEach((final UseCaseProduct element) {
-      listProductUseCase.add(element.title);
-    });
-    selectedProductUseCase.value = UseCaseCategory.values.first.title;
-
-    tmpTypes.forEach((final TenderType element) {
-      listProductType.add(element.title);
-    });
-    selectedProductType.value = TenderType.values.first.title;
+  Future<void> addNewImage(final String productId, {required final VoidCallback action}) async {
+    if (listOfNewImage.isNotEmpty) {
+      for (int i = 0; i < listOfNewImage.length; i++) {
+        await mediaDataSource.createWebV2(
+          useCase: UseCaseMedia.image.title,
+          productId: productId,
+          files: <PlatformFile>[
+            ...<PlatformFile>[listOfNewImage[i]],
+          ],
+          action: action,
+          error: (final int statusCode) {
+            action();
+          },
+        );
+      }
+    } else {
+      action();
+    }
   }
 
-  void createProduct() {
-    print("C");
+  void createProduct({final String? catId, final String? type, final VoidCallback? action}) {
     productDataSource.create(
       dto: ProductCreateUpdateDto(
         title: titleController.text,
         subtitle: subTitleController.text,
         description: descriptionController.text,
-        details: detailsController.text,
         address: addressController.text,
-        author: authorController.text,
         phoneNumber: phoneNumberController.text,
-        link: linkController.text,
         email: emailController.text,
         state: stateController.text,
-        stateTr1: stateTr1Controller.text,
         price: double.parse(priceController.text),
+        useCase: UseCaseProduct.ad.title,
         latitude: double.parse(latitudeController.text),
         longitude: double.parse(longitudeController.text),
-        useCase: selectedProductUseCase.value,
-        type: selectedProductType.value,
+        type: type,
+        categories: catId == null ? null : <String>[catId],
       ),
       onResponse: (final GenericResponse<ProductReadDto> response) {
-        back();
+        addNewImage(response.result?.id ?? "", action: () {});
+        action?.call();
+      },
+      onError: (final GenericResponse<dynamic> response) {},
+    );
+  }
+
+  void editProduct({
+    required final String id,
+    final String? catId,
+    final String? type,
+    final VoidCallback? action,
+  }) {
+    productDataSource.update(
+      dto: ProductCreateUpdateDto(
+        id: id,
+        title: titleController.text,
+        subtitle: subTitleController.text,
+        description: descriptionController.text,
+        address: addressController.text,
+        phoneNumber: phoneNumberController.text,
+        email: emailController.text,
+        state: stateController.text,
+        price: double.parse(priceController.text),
+        useCase: UseCaseProduct.ad.title,
+        latitude: double.parse(latitudeController.text),
+        longitude: double.parse(longitudeController.text),
+        type: type,
+        categories: catId == null ? null : <String>[catId],
+      ),
+      onResponse: (final GenericResponse<ProductReadDto> response) {
+        action?.call();
       },
       onError: (final GenericResponse<dynamic> response) {},
     );
@@ -108,7 +158,7 @@ mixin ProductsController {
 
   void getProducts({required final VoidCallback action}) {
     productDataSource.filter(
-      filter: ProductFilterDto(),
+      filter: ProductFilterDto(useCase: UseCaseProduct.ad.title),
       onResponse: (final GenericResponse<ProductReadDto> response) {
         list.value = response.resultList!;
         action();
@@ -125,24 +175,15 @@ class DataSource extends DataGridSource {
           (final int index, final ProductReadDto e) => DataGridRow(
             cells: <DataGridCell>[
               DataGridCell<int>(columnName: index.toString(), value: index),
-              DataGridCell<ProductReadDto>(columnName: e.id ?? "", value: e),
               DataGridCell<ProductReadDto>(columnName: e.title ?? "", value: e),
-              DataGridCell<ProductReadDto>(columnName: e.subtitle ?? "", value: e),
               DataGridCell<ProductReadDto>(columnName: e.description ?? "", value: e),
-              DataGridCell<ProductReadDto>(columnName: e.details ?? "", value: e),
               DataGridCell<ProductReadDto>(columnName: e.address ?? "", value: e),
-              DataGridCell<ProductReadDto>(columnName: e.author ?? "", value: e),
               DataGridCell<ProductReadDto>(columnName: e.phoneNumber ?? "", value: e),
-              DataGridCell<ProductReadDto>(columnName: e.link ?? "", value: e),
               DataGridCell<ProductReadDto>(columnName: e.email ?? "", value: e),
               DataGridCell<ProductReadDto>(columnName: e.state ?? "", value: e),
-              DataGridCell<ProductReadDto>(columnName: e.stateTr1 ?? "", value: e),
-              DataGridCell<ProductReadDto>(columnName: e.stateTr2 ?? "", value: e),
               DataGridCell<ProductReadDto>(columnName: e.latitude.toString(), value: e),
               DataGridCell<ProductReadDto>(columnName: e.longitude.toString(), value: e),
               DataGridCell<ProductReadDto>(columnName: e.price.toString(), value: e),
-              DataGridCell<ProductReadDto>(columnName: e.useCase ?? "", value: e),
-              DataGridCell<ProductReadDto>(columnName: e.type ?? "", value: e),
             ],
           ),
         )
