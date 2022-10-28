@@ -1,6 +1,7 @@
 import 'package:dashboard/core/core.dart';
-import 'package:dashboard/views/pages/products/ads/controller.dart';
-import 'package:dashboard/views/pages/products/ads/create.dart';
+import 'package:dashboard/views/pages/products/learn/controller.dart';
+import 'package:dashboard/views/pages/products/learn/create.dart';
+import 'package:dashboard/views/pages/products/tenders/create.dart';
 import 'package:dashboard/views/widgets/appbar.dart';
 import 'package:dashboard/views/widgets/drawer.dart';
 import 'package:dashboard/views/widgets/grid.dart';
@@ -8,14 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:utilities/utilities.dart';
 
-class AdsProductPage extends StatefulWidget {
-  const AdsProductPage({final Key? key}) : super(key: key);
+class LearnProductPage extends StatefulWidget {
+  const LearnProductPage({final Key? key}) : super(key: key);
 
   @override
-  State<AdsProductPage> createState() => _AdsProductPageState();
+  State<LearnProductPage> createState() => _LearnProductPageState();
 }
 
-class _AdsProductPageState extends State<AdsProductPage> with AdsProductController {
+class _LearnProductPageState extends State<LearnProductPage> with LearnProductController {
   @override
   void initState() {
     getProducts(action: () => dataSource.value = DataSource(list));
@@ -26,7 +27,7 @@ class _AdsProductPageState extends State<AdsProductPage> with AdsProductControll
   Widget build(final BuildContext context) => scaffold(
         constraints: const BoxConstraints(minWidth: 1000),
         appBar: appbar(
-          title: "Ads products",
+          title: "Lest Learn products",
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.picture_as_pdf),
@@ -35,7 +36,7 @@ class _AdsProductPageState extends State<AdsProductPage> with AdsProductControll
             IconButton(
               icon: const Icon(Icons.add_box_sharp),
               onPressed: () => push(
-                AdsCreatePage(onBack: () => getProducts(action: () => dataSource.value = DataSource(list))),
+                LearnCreatePage(onBack: () => getProducts(action: () => dataSource.value = DataSource(list))),
               ),
             ),
           ],
@@ -58,7 +59,7 @@ class _AdsProductPageState extends State<AdsProductPage> with AdsProductControll
             title: s.edit,
             backgroundColor: Colors.blueAccent,
             onTap: () => push(
-              AdsCreatePage(
+              LearnCreatePage(
                   onBack: () => getProducts(
                         action: () => dataSource.value = DataSource(list),
                       ),

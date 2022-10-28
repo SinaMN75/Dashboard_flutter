@@ -1,5 +1,6 @@
 import 'package:dashboard/core/core.dart';
 import 'package:dashboard/views/pages/products/jobs/controller.dart';
+import 'package:dashboard/views/pages/products/tenders/controller.dart';
 import 'package:dashboard/views/widgets/appbar.dart';
 import 'package:dashboard/views/widgets/drawer.dart';
 import 'package:dashboard/views/widgets/form.dart';
@@ -9,15 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:utilities/utilities.dart';
 
-class AdsCreatePage extends StatefulWidget {
-  const AdsCreatePage({required this.onBack, this.product, final Key? key}) : super(key: key);
+class TendersCreatePage extends StatefulWidget {
+  const TendersCreatePage({required this.onBack, this.product, final Key? key}) : super(key: key);
   final ProductReadDto? product;
   final VoidCallback onBack;
   @override
-  State<AdsCreatePage> createState() => _AdsCreatePageState();
+  State<TendersCreatePage> createState() => _TendersCreatePageState();
 }
 
-class _AdsCreatePageState extends State<AdsCreatePage> with JobsProductController {
+class _TendersCreatePageState extends State<TendersCreatePage> with TendersProductController {
   late List<MediaReadDto> medias;
 
   @override

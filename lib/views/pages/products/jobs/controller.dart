@@ -8,7 +8,7 @@ import 'package:syncfusion_flutter_datagrid_export/export.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:utilities/utilities.dart';
 
-mixin AdsProductController {
+mixin JobsProductController {
   ProductV2DataSource productDataSource = ProductV2DataSource(baseUrl: AppConstants.baseUrl);
   CategoryDataSource categoryDataSource = CategoryDataSource(baseUrl: AppConstants.baseUrl);
   MediaDataSource mediaDataSource = MediaDataSource(baseUrl: AppConstants.baseUrl);
@@ -36,7 +36,7 @@ mixin AdsProductController {
   void getCategorise() {
     categoryDataSource.read(
       onResponse: (final GenericResponse<CategoryReadDto> response) {
-        categorise.value = response.resultList!.getByUseCase(useCase: UseCaseCategory.ad.title);
+        categorise.value = response.resultList!.getByUseCase(useCase: UseCaseCategory.company.title);
         if(categorise.isNotEmpty) selectedCategory.value = categorise.first;
       },
       onError: (final GenericResponse<dynamic> onError) {
@@ -112,7 +112,7 @@ mixin AdsProductController {
         email: emailController.text,
         state: stateController.text,
         price: priceController.text.isEmpty ? null : double.parse(priceController.text),
-        useCase: UseCaseProduct.ad.title,
+        useCase: UseCaseProduct.company.title,
         latitude: latitudeController.text.isEmpty ? null : double.parse(latitudeController.text),
         longitude: longitudeController.text.isEmpty ? null : double.parse(longitudeController.text),
         type: type,
@@ -143,7 +143,7 @@ mixin AdsProductController {
         email: emailController.text,
         state: stateController.text,
         price: priceController.text.isEmpty ? null : double.parse(priceController.text),
-        useCase: UseCaseProduct.ad.title,
+        useCase: UseCaseProduct.company.title,
         latitude: latitudeController.text.isEmpty ? null : double.parse(latitudeController.text),
         longitude: longitudeController.text.isEmpty ? null : double.parse(longitudeController.text),
         type: type,
@@ -158,7 +158,7 @@ mixin AdsProductController {
 
   void getProducts({required final VoidCallback action}) {
     productDataSource.filter(
-      filter: ProductFilterDto(useCase: UseCaseProduct.ad.title),
+      filter: ProductFilterDto(useCase: UseCaseProduct.company.title),
       onResponse: (final GenericResponse<ProductReadDto> response) {
         list.value = response.resultList!;
         action();

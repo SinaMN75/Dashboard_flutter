@@ -9,15 +9,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:utilities/utilities.dart';
 
-class AdsCreatePage extends StatefulWidget {
-  const AdsCreatePage({required this.onBack, this.product, final Key? key}) : super(key: key);
+class JobsCreatePage extends StatefulWidget {
+  const JobsCreatePage({required this.onBack, this.product, final Key? key}) : super(key: key);
   final ProductReadDto? product;
   final VoidCallback onBack;
   @override
-  State<AdsCreatePage> createState() => _AdsCreatePageState();
+  State<JobsCreatePage> createState() => _JobsCreatePageState();
 }
 
-class _AdsCreatePageState extends State<AdsCreatePage> with JobsProductController {
+class _JobsCreatePageState extends State<JobsCreatePage> with JobsProductController {
   late List<MediaReadDto> medias;
 
   @override
