@@ -142,6 +142,7 @@ class AppImages {
 class AppIcons {
   static const String _base = "lib/assets/icons";
   static const String close = "$_base/close.svg";
+  static const String arrowRight = "$_base/arrow_right.svg";
   static const String email = "$_base/email.svg";
   static const String expansionArrow = "$_base/expansion_arrow.svg";
   static const String image = "$_base/image.svg";
